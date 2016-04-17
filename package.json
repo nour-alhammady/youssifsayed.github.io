@@ -1,0 +1,14 @@
+{
+  "description": "A simple personal blog, hosted on github pages",
+  "version": "1.0.0-beta",
+  "private": true,
+  "author": "youssif sayed <sayedgyussif@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.13.0"
+  },
+  "dependencies": {
+    "react": "^15.0.1"
+  }
+}
