@@ -6,9 +6,16 @@
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-typescript": "^2.13.0"
+    "gulp-sass": "^2.2.0",
+    "htmltidy": "0.0.6",
+    "htmltidy-options": "^1.0.0",
+    "prismjs": "^1.4.1",
+    "xml": "^1.0.1"
   },
   "dependencies": {
+    "ejs": "^2.4.1",
+    "highlight.js": "^9.3.0",
+    "pygmentize-bundled": "^2.3.0",
     "react": "^15.0.1"
   }
 }
