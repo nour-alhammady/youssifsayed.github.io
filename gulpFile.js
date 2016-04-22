@@ -10,7 +10,7 @@ const fs     = require("fs"),
 	xml      = require("xml"),
 	ejs      = require("ejs"),
 	posts    = require(`${__dirname}/postsMap.json`),
-	siteurl  = "https://youssifsayed.github.io/",
+	siteurl  = "http://youssif.me/",
 	config   = {
 		blogname: "مدونة يوسف سيد",
 		blogdescription: "مدونة شخصية ذات ميول برمجيِّة.",
