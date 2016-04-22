@@ -1,0 +1,187 @@
+/**
+ * youssif sayed blog <http://youssifsayed.github.io/> *
+ @copyright: youssif sayed<sayedgyussif@gmail.com> 2016, under MIT licence.
+*/
+@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+@import url(https://fonts.googleapis.com/css?family=Amiri:400,400italic&subset=arabic,latin);
+@import url(./prism-atom-dark.css);
+h1, h2, h3, h4 {
+  font-family: "droid arabic kufi", tahoma; }
+
+html, body {
+  height: 100%; }
+
+body {
+  background: url(../bg.jpg) bottom left no-repeat fixed;
+  direction: rtl;
+  background-size: cover;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+.blog-main {
+  margin: 0 auto;
+  background: white;
+  padding: 10px 35px;
+  box-sizing: border-box;
+  position: relative; }
+  .blog-main header {
+    display: flex; }
+    .blog-main header .logo {
+      text-align: center; }
+      .blog-main header .logo a {
+        color: #333;
+        text-decoration: none; }
+        .blog-main header .logo a .blog-name {
+          font: 14pt "droid arabic kufi", tahoma; }
+        .blog-main header .logo a .blog-description {
+          font: 10pt amiri, arial; }
+    .blog-main header nav.blog-nav {
+      margin-right: auto; }
+      .blog-main header nav.blog-nav ul {
+        list-style: none;
+        padding-top: 20px; }
+        .blog-main header nav.blog-nav ul li {
+          display: inline-block;
+          font: 9px "droid arabic kufi";
+          margin: 0 4px; }
+          .blog-main header nav.blog-nav ul li.actived, .blog-main header nav.blog-nav ul li:hover {
+            border-bottom: 2px #101420 solid; }
+          .blog-main header nav.blog-nav ul li a {
+            color: #333; }
+      .blog-main header nav.blog-nav ul:hover li.actived {
+        border-bottom: 0 !important; }
+      .blog-main header nav.blog-nav ul:hover li.actived:hover {
+        border-bottom: 2px #101420 solid !important; }
+      .blog-main header nav.blog-nav .twitter {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        background: url("../twitter.png") no-repeat;
+        background-size: cover;
+        width: 22px;
+        height: 22px; }
+  .blog-main article {
+    text-align: justify;
+    padding: 8px 0; }
+    .blog-main article .post-header {
+      display: flex; }
+      .blog-main article .post-header .post-title {
+        color: #333; }
+      .blog-main article .post-header .tags {
+        display: inline-block;
+        margin-right: auto; }
+        .blog-main article .post-header .tags .tag {
+          font-size: 6pt;
+          color: #888;
+          border: 1px #888 solid;
+          padding: 5px;
+          border-radius: 7px; }
+    .blog-main article img {
+      display: block;
+      margin: 0 auto; }
+      .blog-main article img[src="undefined"] {
+        display: none; }
+
+p {
+  font: 12pt amiri, arial; }
+
+a {
+  text-decoration: none; }
+
+h2 {
+  font-size: 15pt; }
+
+h3 {
+  font-size: 14pt; }
+
+h4 {
+  font-size: 12pt; }
+
+h5 {
+  font-size: 10pt; }
+
+h6 {
+  font-size: 9pt; }
+
+form .input,
+form .textarea {
+  padding: 8px 6px;
+  margin: 20px 0;
+  box-sizing: border-box;
+  width: 350px; }
+
+form .input {
+  position: relative; }
+
+form .label {
+  width: 80px;
+  display: inline-block;
+  font: 12pt "droid arabic-kufi";
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+form input[type="text"],
+form input[type="email"] {
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  padding-right: 88px;
+  background: transparent;
+  border: 2px #ccc solid;
+  border-radius: 2px; }
+
+form .textarea {
+  min-height: 140px;
+  box-sizing: border-box; }
+  form .textarea .label {
+    vertical-align: top; }
+  form .textarea textarea {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ccc;
+    padding-left: 108px;
+    display: block;
+    box-sizing: border-box;
+    min-height: 100px; }
+
+.footer {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 4 35px;
+  border-top: 1px #ccc solid; }
+
+.anchor {
+  color: #333; }
+
+code {
+  direction: ltr !important; }
+
+@media all and (min-width: 960px) {
+  body {
+    padding-top: 35px; }
+  .blog-main {
+    width: 960px;
+    min-height: calc(100% - 80px); } }
+
+@media all and (max-width: 960px) and (min-width: 800px) {
+  body {
+    padding-top: 20px; }
+  .blog-main {
+    width: 800px;
+    min-height: calc(100% - 60px); } }
+
+@media all and (max-width: 800px) {
+  body {
+    padding-top: 5px; }
+  .blog-main {
+    min-width: 100%;
+    min-width: calc(100% - 5px);
+    min-height: 100%;
+    min-height: calc(100% - 5px); } }
