@@ -253,7 +253,7 @@ gulp.task("extra", function (done) {
 })
 
 gulp.task("sitemap", function () {
-	var urlset = []
+	var urlset = [{ _attr: { xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" }}]
 	for (var post of posts) {
 		let name = post.name
 		if (typeof name == "string") {
