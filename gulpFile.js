@@ -203,8 +203,10 @@ gulp.task("posts", function (done) {
 		let postConfig = postsConfig,
 			name       = postHTMLName(post.name)
 		
-		postConfig.pageTitle   = post.title;
-		postConfig.postContent = postRender(post, true)
+		postConfig.pageTitle       = post.title;
+		postConfig.postContent     = postRender(post, true)
+		postConfig.postDescription = fs.readFileSync(`${__dirname}/posts-md/${post.post}`, "utf-8").match(typeof postConfig.readPostOnIndexTo !== "string" ?
+									 new RegExp(post.readPostOnIndexTo, "i") : ReadPostOnIndexTo)[0]
 
 		htmltidy(ejs.render(postTemplate, postConfig), htmlTidyOptions["Kastor tidy - HTML page UTF-8"], (err, html) => {
 			if (err)
