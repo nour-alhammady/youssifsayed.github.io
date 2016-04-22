@@ -7,8 +7,9 @@
 			<% } %>
 		</span>
 	</h2>
-	<% if (typeof postImage == "string") %>
-	<%- `<img class="post-img" src="${postImage}">`; %>
+	<% if (typeof postImage == "string") { %>
+		<img class="post-img" alt="<%= postTitle %>" title="<%= postTitle %>" src="<%= postImage %>">
+	<% } %>
 	<div class="post-content">
 		<p class="post-date"><i><%= postDate %></i></p>
 		<%- articleContent %><% if (readMore) { %> ,<a href="<%- postLink %>"><%= readMore %></a>...<% } %>
