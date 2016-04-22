@@ -1,0 +1,16 @@
+<article>
+	<h2 class="post-header">
+		<a class="post-title" href="<%= postLink %>"><%= postTitle %></a>
+		<span class="tags">
+			<% for (var tag of postTags) { %>
+				<a class="tag" href="<%= blogurl %>tag/<%= tag %>"><%= tag %></a>
+			<% } %>
+		</span>
+	</h2>
+	<% if (typeof postImage == "string") %>
+	<%- `<img class="post-img" src="${postImage}">`; %>
+	<div class="post-content">
+		<p class="post-date"><i><%= postDate %></i></p>
+		<%- articleContent %><% if (readMore) { %> ,<a href="<%- postLink %>"><%= readMore %></a>...<% } %>
+	</div>
+</article>

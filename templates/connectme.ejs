@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<base target="_blank">
+		<meta charset="utf-8">
+		<title>تواصل معي - <%= blogname %></title>
+		<meta name="description" value="<%= blogdescription %>">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="Youssif Sayed">
+		<link rel="stylesheet" type="text/css" href="<%= blogurl %>/resource/css/theme.css">
+	</head>
+	<body>
+		<div class="blog-main">
+			<header><%- header %></header>
+			<main>
+				<h2>تواصل معي</h2>
+				<p class="state"></p>
+				<p>على الأغلب سيصلك رد مني -إن شاء الله- في خلال بعض ساعات، قد أتاخر عن الرّد بسبب ظروف شخصية.</p>
+				<p>تواصل معي على البريد sayedgyussif@gmail.com أو على <a href="https://twitter.com/echoYOussif">تويتر</a><p>
+				<!--
+				<form onsubmit="return false">
+					<div class="input">
+						<label class="label">عنوان رسالتك</label>
+						<input type="text" name="title" placeholder="رجاءً أدخل عنونًا يوضح موضوع رسالتك.">	
+					</div>
+					<div class="input">
+						<label class="label">اسمك</label>
+						<input type="text" name="name" placeholder="رجاءً أدخل اسمك، أو اتركه فارغًا إن أردت.">	
+					</div>
+					<div class="input">
+						<label class="label">بريدك</label>
+						<input type="email" name="email" placeholder="أدخل بريدك لكي أتواصل معك، إن تريد اتركه فارغًا.">
+					</div>
+					<div class="textarea">
+						<span class="label">رسالتك</span>
+						<textarea required placeholder="......."></textarea>
+					</div>
+					<input value="أرسل" type="submit">
+				</form>
+				<script src="<%= blogurl %>email.js"></script>
+				-->
+			</main>
+		</div>
+		<%- footer %>
+	</body>
+</html>

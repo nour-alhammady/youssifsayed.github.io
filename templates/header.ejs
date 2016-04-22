@@ -1,0 +1,34 @@
+<span class="logo">
+	<a href="<%= blogurl %>" target="_self">
+		<h1 class="blog-name"><%= blogname %></h1>
+		<p class="blog-description"><%= blogdescription %></p>
+	</a>
+</span>
+<nav class="blog-nav">
+	<ul class="blog-menu">
+		<%
+			var menu = [
+				{
+					title: "المدونة",
+					name: "blog",
+					path: blogurl
+				},
+				{
+					title: "تواصل معي",
+					name: "connectme",
+					path: blogurl+"connectme.html"
+				},
+				{
+					title: "من أنا",
+					name: "readme",
+					path: blogurl+"readme.html"
+				}
+			];
+			for (var list of menu) { %>
+			<li class="blog-list<% if (activedList == list.name) { %><%= " actived"; %><% } %>">
+				<a href="<%= list.path %>"><%= list.title %><a/>
+			</li>
+		<% } %>
+	</ul>
+	<a class="twitter" href="https://twitter.com/echoYOussif"></a>
+</nav>

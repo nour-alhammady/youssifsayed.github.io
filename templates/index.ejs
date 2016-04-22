@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<base target="_blank">
+		<meta charset="utf-8">
+		<title><%= typeof pageTitle == "string" && pageTitle.length > 0 ? `${pageTitle} - ` : ""; %><%= blogname %></title>
+		<meta name="description" value="<%= blogdescription %>">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="Youssif Sayed">
+		<link rel="stylesheet" type="text/css" href="<%= blogurl %>/resource/css/theme.css">
+	</head>
+	<body>
+		<div class="blog-main">
+			<header><%- header %></header>
+			<main>
+				<% for (var article of articles) { %>
+					<%- article %>
+				<% } %>	
+			</main>
+		</div>
+		<%- footer %>
+	</body>
+</html>
