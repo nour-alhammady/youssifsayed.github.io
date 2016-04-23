@@ -1,7 +1,6 @@
 language: node_js
 
-after_install:
-	npm install htmltidy -g
+sudo: required
 
 node_js: 
   - "5.0"
