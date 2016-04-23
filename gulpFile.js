@@ -149,7 +149,7 @@ function writeIndexs(done, posts, writeTo, title) {
 		indexConfig.articles = postsHTML
 		indexHtml            = ejs.render(indexTemplate, indexConfig)
 	
-		fs.writeFileSync(`${writeTo}/index${i > 0 ? '-' + (i+1) : ''}.html`, html)
+		fs.writeFileSync(`${writeTo}/index${i > 0 ? '-' + (i+1) : ''}.html`, indexHtml)
 	}
 	done()
 }
@@ -217,7 +217,7 @@ gulp.task("posts", function (done) {
 									 new RegExp(post.readPostOnIndexTo, "i") : ReadPostOnIndexTo)[0]
 
 
-		fs.writeFileSync(`${out}/post/${name}`, html)
+		fs.writeFileSync(`${out}/post/${name}`, ejs.render(postTemplate, postConfig))
 	}
 	done()
 });
@@ -227,20 +227,18 @@ gulp.task("extra", function (done) {
 		connectmeTemplate = fs.readFileSync(`${__dirname}/templates/connectme.ejs`, "utf8"),
 		readmeTemplate    = fs.readFileSync(`${__dirname}/templates/readme.ejs`, "utf8"),
 		headerTemplate    = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
-		footerTemplate    = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
-
+		footerTemplate    = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8")
 	
 	pgconfig.footer      = ejs.render(footerTemplate, pgconfig)
 	pgconfig.activedList = "connectme";
 	pgconfig.header      = ejs.render(headerTemplate, pgconfig)
 			
-	fs.writeFileSync(`${out}/connectme.html`, html)
+	fs.writeFileSync(`${out}/connectme.html`, ejs.render(connectmeTemplate, pgconfig))
 	
 	pgconfig.activedList = "readme"
 	pgconfig.header      = ejs.render(headerTemplate, pgconfig)
 	
-			
-	fs.writeFileSync(`${out}/readme.html`, html)
+	fs.writeFileSync(`${out}/readme.html`, ejs.render(readmeTemplate, pgconfig))
 	
 	done()
 })
