@@ -4,4 +4,4 @@ node_js:
   - "4.0"
   
 after_success: 
-  - bash deploy.sh
+  - deploy.sh
