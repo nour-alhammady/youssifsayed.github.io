@@ -16,6 +16,7 @@ const fs     = require("fs"),
 		blogdescription: "مدونة شخصية ذات ميول برمجيِّة.",
 		blogurl: siteurl
 	},
+	createConfig      = () => { return Object.create(config) }, // clone config
 	htmltidy 	      = require("htmltidy").tidy,
 	marked            = require("marked"),
 	highlight         = require("highlight.js"),
