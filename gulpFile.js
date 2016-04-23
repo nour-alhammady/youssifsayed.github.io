@@ -25,7 +25,9 @@ const fs     = require("fs"),
 	markdownCache     = [],
 	ReadPostOnIndexTo = /[^\.]+\./,
 	postsInpage       = 4,
-	mkReander         = new marked.Renderer()
+	mkReander         = new marked.Renderer(),
+	out               = `${__dirname}/gh_pages`
+
 
 mkReander.heading = function (text, level) {
   var anchor = text.replace(/ /g, '-');
@@ -58,7 +60,24 @@ marked.setOptions({
 })
 htmlTidyOptions["Kastor tidy - HTML page UTF-8"].doctype = "html5"
 
-gulp.task("default", ["sitemap", "index", "tags", "posts", "extra", "theme.scss"])
+gulp.task("default", ["setup", "sitemap", "index", "tags", "posts", "extra", "theme.scss"])
+
+function mkdirP(dir) {
+	try {
+		fs.accessSync(dir, fs.F_OK);
+	} catch (e) {
+		return fs.mkdirSync(dir);
+	}
+}
+
+
+gulp.task("setup", function () {
+	mkdirP(out)
+	mkdirP(`${out}/tag`)
+	mkdirP(`${out}/index`)
+	mkdirP(`${out}/post`)
+	mkdirP(`${out}/tag`)
+})
 
 function markdown(file) {
 	if (typeof markdownCache[file] == "string") return markdownCache[file]
@@ -77,7 +96,7 @@ function postHTMLName(name) {
 function postRender(post, full) {
 	full = !!full;
 	var articleTemplate = fs.readFileSync(`${__dirname}/templates/article.ejs`, "utf8"),
-	    postConfig      = config,
+	    postConfig      = createConfig(),
 		description     = (full && markdown(post.post)) ||
 						  (post.description && `<p>${post.description}</p>`) || 
 						  (typeof post.post == "string" && post.post.length > 0 
@@ -107,7 +126,7 @@ function postRender(post, full) {
 }
 
 function writeIndexs(done, posts, writeTo, title) {
-	var indexConfig      = config,
+	var indexConfig      = createConfig(),
 		headerTemplate   = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
 		indexTemplate    = fs.readFileSync(`${__dirname}/templates/index.ejs`, "utf8"),
 		footerTemplate   = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
@@ -145,10 +164,10 @@ function writeIndexs(done, posts, writeTo, title) {
 
 gulp.task("index", function (done) {
 	var copy = () => {
-		fs.createReadStream(`${__dirname}/index/index.html`).pipe(fs.createWriteStream(`${__dirname}/index.html`))
+		fs.createReadStream(`${out}/index/index.html`).pipe(fs.createWriteStream(`${out}/index.html`))
 		done()
 	}
-	writeIndexs(copy, posts, `${__dirname}/index/`)
+	writeIndexs(copy, posts, `${out}/index/`)
 })
 
 gulp.task("tags", function (done) {
@@ -171,20 +190,16 @@ gulp.task("tags", function (done) {
 	}
 	
 	for (let tag in tags) {
-		let tagDir   = `${__dirname}/tag/${tag}`;
-
-		try {
-   			fs.accessSync(tagDir, fs.F_OK);
-		} catch (e) {
-			fs.mkdirSync(tagDir);
-		}
-
+		let tagDir   = `${out}/tag/${tag}`;
+		
+		mkdirP(tagDir)
+		
 		writeIndexs(Done, tags[tag], tagDir, tag)
 	}
 })
 
 gulp.task("posts", function (done) {
-	var postsConfig 	 = config,
+	var postsConfig 	 = createConfig(),
 		postTemplate     = fs.readFileSync(`${__dirname}/templates/post.ejs`, "utf8"),
 		headerTemplate   = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
 		footerTemplate   = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
@@ -201,7 +216,7 @@ gulp.task("posts", function (done) {
 			continue;
 		}
 		
-		let postConfig = postsConfig,
+		let postConfig = Object.create(postsConfig),
 			name       = postHTMLName(post.name)
 		
 		postConfig.pageTitle       = post.title;
@@ -213,14 +228,14 @@ gulp.task("posts", function (done) {
 			if (err)
 				console.log(err)
 				
-			fs.writeFileSync(`${__dirname}/post/${name}`, html)
+			fs.writeFileSync(`${out}/post/${name}`, html)
 			if (posts.indexOf(post) == length-1) done()
 		})
 	}	
 });
 
 gulp.task("extra", function (done) {
-	var pgconfig          = config,
+	var pgconfig          = createConfig(),
 		connectmeTemplate = fs.readFileSync(`${__dirname}/templates/connectme.ejs`, "utf8"),
 		readmeTemplate    = fs.readFileSync(`${__dirname}/templates/readme.ejs`, "utf8"),
 		headerTemplate    = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
@@ -235,7 +250,7 @@ gulp.task("extra", function (done) {
 		if (err)
 			console.log(err)
 			
-		fs.writeFileSync(`${__dirname}/connectme.html`, html)
+		fs.writeFileSync(`${out}/connectme.html`, html)
 		if (onedone) done();
 		onedone = true
 	})
@@ -247,7 +262,7 @@ gulp.task("extra", function (done) {
 		if (err)
 			console.log(err)
 			
-		fs.writeFileSync(`${__dirname}/readme.html`, html)
+		fs.writeFileSync(`${out}/readme.html`, html)
 		if (onedone) done()
 		onedone = true
 	})
@@ -261,21 +276,13 @@ gulp.task("sitemap", function () {
 			urlset.push({url: [{loc: `${siteurl}post/${postHTMLName(name)}`}]})
 		}
 	}
-	fs.writeFileSync("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n' + xml({
+	fs.writeFileSync(`${out}/sitemap.xml`, '<?xml version="1.0" encoding="UTF-8"?>\n' + xml({
 		"urlset": urlset
 	}))
 })
 
 gulp.task("theme.scss", function () {
-	gulp.src(`${__dirname}/resource/css/theme.scss`)
+	gulp.src(`${out}/resource/css/theme.scss`)
 	.pipe(gulpSCSS())
-	.pipe(gulp.dest(`${__dirname}/resource/css/`))
-})
-
-gulp.task("clean", function () {
-	fs.unlinkSync(`${__dirname}/index.html`)
-	fs.unlinkSync(`${__dirname}/sitemap.xml`)
-	for (var file of fs.readdirSync(`${__dirname}/post/`)) {
-		fs.unlinkSync(`${__dirname}/post/${file}`)
-	}
+	.pipe(gulp.dest(`${out}/resource/css/`))
 })
