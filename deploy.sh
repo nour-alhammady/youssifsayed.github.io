@@ -1,5 +1,3 @@
-#!bash
-
 git init
 
 git config user.name  "youssifsayed"
