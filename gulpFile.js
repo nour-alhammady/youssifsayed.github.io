@@ -17,10 +17,8 @@ const fs     = require("fs"),
 		blogurl: siteurl
 	},
 	createConfig      = () => { return Object.create(config) }, // clone config
-	htmltidy 	      = require("htmltidy").tidy,
 	marked            = require("marked"),
 	highlight         = require("highlight.js"),
-	htmlTidyOptions   = require("htmltidy-options"),
 	prism             = require('prismjs'),
 	markdownCache     = [],
 	ReadPostOnIndexTo = /[^\.]+\./,
@@ -58,7 +56,6 @@ marked.setOptions({
 	sanitize: true,
 	smartLists: true
 })
-htmlTidyOptions["Kastor tidy - HTML page UTF-8"].doctype = "html5"
 
 gulp.task("default", ["setup", "sitemap", "index", "tags", "posts", "extra", "theme.scss"])
 
@@ -151,15 +148,10 @@ function writeIndexs(done, posts, writeTo, title) {
 		
 		indexConfig.articles = postsHTML
 		indexHtml            = ejs.render(indexTemplate, indexConfig)
-		
-		htmltidy(indexHtml, htmlTidyOptions["Kastor tidy - HTML page UTF-8"], (err, html) => {
-			if (err)
-				console.log(err)
-			
-			fs.writeFileSync(`${writeTo}/index${i > 0 ? '-' + (i+1) : ''}.html`, html)
-			if (i+1 == size) done()
-		})
+	
+		fs.writeFileSync(`${writeTo}/index${i > 0 ? '-' + (i+1) : ''}.html`, html)
 	}
+	done()
 }
 
 gulp.task("index", function (done) {
@@ -224,14 +216,10 @@ gulp.task("posts", function (done) {
 		postConfig.postDescription = fs.readFileSync(`${__dirname}/posts-md/${post.post}`, "utf-8").match(typeof postConfig.readPostOnIndexTo !== "string" ?
 									 new RegExp(post.readPostOnIndexTo, "i") : ReadPostOnIndexTo)[0]
 
-		htmltidy(ejs.render(postTemplate, postConfig), htmlTidyOptions["Kastor tidy - HTML page UTF-8"], (err, html) => {
-			if (err)
-				console.log(err)
-				
-			fs.writeFileSync(`${out}/post/${name}`, html)
-			if (posts.indexOf(post) == length-1) done()
-		})
-	}	
+
+		fs.writeFileSync(`${out}/post/${name}`, html)
+	}
+	done()
 });
 
 gulp.task("extra", function (done) {
@@ -240,32 +228,21 @@ gulp.task("extra", function (done) {
 		readmeTemplate    = fs.readFileSync(`${__dirname}/templates/readme.ejs`, "utf8"),
 		headerTemplate    = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
 		footerTemplate    = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
-		onedone;
+
 	
 	pgconfig.footer      = ejs.render(footerTemplate, pgconfig)
 	pgconfig.activedList = "connectme";
 	pgconfig.header      = ejs.render(headerTemplate, pgconfig)
-	
-	htmltidy(ejs.render(connectmeTemplate, pgconfig), htmlTidyOptions["Kastor tidy - HTML page UTF-8"], (err, html) => {
-		if (err)
-			console.log(err)
 			
-		fs.writeFileSync(`${out}/connectme.html`, html)
-		if (onedone) done();
-		onedone = true
-	})
+	fs.writeFileSync(`${out}/connectme.html`, html)
 	
 	pgconfig.activedList = "readme"
 	pgconfig.header      = ejs.render(headerTemplate, pgconfig)
 	
-	htmltidy(ejs.render(readmeTemplate, pgconfig), htmlTidyOptions["Kastor tidy - HTML page UTF-8"], (err, html) => {
-		if (err)
-			console.log(err)
 			
-		fs.writeFileSync(`${out}/readme.html`, html)
-		if (onedone) done()
-		onedone = true
-	})
+	fs.writeFileSync(`${out}/readme.html`, html)
+	
+	done()
 })
 
 gulp.task("sitemap", function () {
