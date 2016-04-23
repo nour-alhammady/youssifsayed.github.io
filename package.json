@@ -9,6 +9,7 @@
     "gulp-sass": "^2.2.0",
     "htmltidy": "0.0.6",
     "htmltidy-options": "^1.0.0",
+    "marked": "^0.3.5",
     "prismjs": "^1.4.1",
     "xml": "^1.0.1"
   },
@@ -19,6 +20,6 @@
     "react": "^15.0.1"
   },
   "scripts": {
-	  "test": "gulp"
+    "test": "gulp"
   }
 }
