@@ -34,7 +34,7 @@ mkReander.heading = function (text, level) {
   					<%= text %></a></h${level}>`, {text: text, anchor: anchor});
 }
 mkReander.image = function(href, title, text) {
-	var base  = `${siteurl}/resource/post-img`,
+	var base  = `${siteurl}/resource/post-img/`,
 		text  = text ? ' alt="' + text + '"' : "",
 		title = title ? ' title="' + title+ '"' : "";
    return `<img src='${href.match(/^http:\/\//i) ? href : base + href}'>${text}${title}`;
