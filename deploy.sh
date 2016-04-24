@@ -14,4 +14,4 @@ git commit -a -m "New deployment!"
 
 ls
 
-git push -f upstream gh-pages
+git push -f up gh-pages
