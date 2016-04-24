@@ -33,6 +33,12 @@ mkReander.heading = function (text, level) {
   return ejs.render(`<h${level}><a href="#<%= anchor %>" class="anchor" name="<%= anchor %>">
   					<%= text %></a></h${level}>`, {text: text, anchor: anchor});
 }
+mkReander.image = function(href, title, text) {
+	var base  = `${siteurl}/resource/post-img`,
+		text  = text ? ' alt="' + text + '"' : "",
+		title = title ? ' title="' + title+ '"' : "";
+   return `<img src='${href.match(/^http:\/\//i) ? href : base + href}'>${text}${title}`;
+}
 marked.Lexer.rules.gfm.heading = marked.Lexer.rules.normal.heading;
 marked.Lexer.rules.tables.heading = marked.Lexer.rules.normal.heading;
 marked.setOptions({

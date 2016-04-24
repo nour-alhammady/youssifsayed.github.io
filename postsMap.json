@@ -1,5 +1,13 @@
 [
 	{
+		"title": "استخدام خدمة Travis CI لبناء مشروعك المستضاف على GitHub.",
+		"post": "TravisCI.md",
+		"name": "get started with Travis CI",
+		"tags": "Travis-CI GitHub",
+		"date": "كتب في 17 رجب 1437هـ الموافق 24 أبريل لسنة 2016م.",
+		"img": "/resource/post-img/Travis-CI-post.png"
+	},
+	{
 		"title": "سلسلة شرح TypeScript: المقال الأول مقدمة والتعريف باللغة.",
 		"post": "typescript1.md",
 		"name": "get started with typescript",
