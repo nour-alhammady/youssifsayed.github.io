@@ -4,7 +4,7 @@ git config user.name  "youssifsayed"
 git config user.email "sayedgyussif@gmail.com"
 
 git remote add up "https://$GITTOKEN@github.com/youssifsayed/youssifsayed.github.io.git"
-git fetch up && git reset up/gh-pages
+git pull up gh-pages
 
 git rm -rf .
 git add -A .
