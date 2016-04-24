@@ -15,4 +15,4 @@ git commit -a -m "New deployment!"
 
 ls
 
-git push -f up gh-pages &> /dev/null
+git push -f up master &> /dev/null
