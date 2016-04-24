@@ -1,6 +1,6 @@
 [
 	{
-		"title": "استخدام خدمة Travis CI لبناء مشروعك المستضاف على GitHub.",
+		"title": "أساسيات استخدام خدمة Travis CI لإختبار المشاريع المستضافة على GitHub.",
 		"post": "TravisCI.md",
 		"name": "get started with Travis CI",
 		"tags": "Travis-CI GitHub",

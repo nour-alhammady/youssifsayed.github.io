@@ -263,7 +263,7 @@ gulp.task("sitemap", function () {
 })
 
 gulp.task("theme.scss", function () {
-	gulp.src(`${out}/resource/css/theme.scss`)
+	gulp.src(`${__dirname}/resource/css/theme.scss`)
 	.pipe(gulpSCSS())
-	.pipe(gulp.dest(`${out}/resource/css/`))
+	.pipe(gulp.dest(`${__dirname}/resource/css/`))
 })
