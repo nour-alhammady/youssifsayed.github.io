@@ -37,7 +37,7 @@ mkReander.image = function(href, title, text) {
 	var base  = `${siteurl}/resource/post-img/`,
 		text  = text ? ' alt="' + text + '"' : "",
 		title = title ? ' title="' + title+ '"' : "";
-   return `<img src='${href.match(/^http:\/\//i) ? href : base + href}'>${text}${title}`;
+   return `<img src='${href.match(/^http:\/\//i) ? href : base + href}'${text}${title}>`;
 }
 marked.Lexer.rules.gfm.heading = marked.Lexer.rules.normal.heading;
 marked.Lexer.rules.tables.heading = marked.Lexer.rules.normal.heading;

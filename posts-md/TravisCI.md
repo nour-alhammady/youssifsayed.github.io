@@ -15,7 +15,7 @@ Travis CI تدعم [الكثير من اللغات](https://docs.travis-ci.com/u
 بعد تسجيل الدخول من خلال الواجهة الرئيسة أضف مزامنة مستودع.
 ![أضف مستودع](travisCi-new.jpg "أضف مستودع")
 من ثم سيظهر لك قائمة بالمستودعات الخاصة بك على GitHub علم على أحداها لتشغيل المزامنة.
-أضف مستودع](travisCi-new1.jpg "أضف مستودع")
+![أضف مستودع](travisCi-new1.jpg "أضف مستودع")
 ###ملف البناء 
 يتكون ملف البناء(.travis.yml) من عمليات متتالية في صياغة YML، -يجب أن  يتواجد الملف في المسار الجذر للمشروع، لنبدأ بمثال لاختبار عمل مشروع بNodejs:
 
@@ -31,6 +31,9 @@ Travis CI تدعم [الكثير من اللغات](https://docs.travis-ci.com/u
 	  - "4"
 	  - "5"
 ```
-سيحاول البناء على جميع إصدارات node_js التي أدخلناها بالطبع سيفشل الاختبار لإننا لم نستخدم أيًّا من أدوات البناء لnodejs، في حالة ما أردت رؤية مشروع كامل بNodeJs يمكنك الإطلاع على [شيفرة مدونتي على GitHub](https://github.com/youssifsayed/youssifsayed.github.io) استخدم فيها Travis CI و[تقارير البناء على Travis CI](https://travis-ci.org/youssifsayed/youssifsayed.github.io).
+سيحاول البناء على جميع إصدارات node_js التي أدخلناها بالطبع سيفشل الاختبار لإننا لم نستخدم أيًّا من أدوات البناء لnodejs،
+
+![الناتج](Travis-Report.jpg "الناتج")
+ في حالة ما أردت رؤية مشروع كامل بNodeJs يمكنك الإطلاع على [شيفرة مدونتي على GitHub](https://github.com/youssifsayed/youssifsayed.github.io) استخدم فيها Travis CI و[تقارير البناء على Travis CI](https://travis-ci.org/youssifsayed/youssifsayed.github.io).
 ملاحظة:
-مع أنه يفضل لو تستخدم الممارسة السائدة للبناء والاختبار في لغتك فمثلًا في لغة C الشائع `configure && make` لكي يتعرف Travis CI عليها إلا أنه يمكنك القيام [ببعض التخصيص](https://docs.travis-ci.com/user/customizing-the-build/)،  في مقال قادم بإذن الله سأتحدث عن نشر البناء، وعمليات الاختبار، واستخدامات غير معتادة للصفح في GitHub.
+مع أنه يفضل لو تستخدم الممارسة السائدة للبناء والاختبار في لغتك فمثلًا في لغة C الشائع `configure && make` لكي يتعرف Travis CI عليها إلا أنه يمكنك القيام [ببعض التخصيص](https://docs.travis-ci.com/user/customizing-the-build/)،  في مقال قادم بإذن الله سأتحدث عن نشر البناء، وعمليات الاختبار، واستخدامات غير معتادة للصفح في GitHub.1
