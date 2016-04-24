@@ -8,9 +8,9 @@ git clone https://github.com/youssifsayed/youssifsayed.github.io.git ./
 git checkout --orphan gh-pages
 
 git rm -rf .
-git add -A .
 
 echo youssif.me>CNAME
+git add -A .
 git commit -a -m "New deployment!"
 
 ls
