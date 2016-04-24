@@ -10,6 +10,8 @@ git checkout master
 git rm -rf .
 
 echo youssif.me>CNAME
+cp -R ../resource ./
+
 git add -A .
 git commit -a -m "New deployment!"
 
