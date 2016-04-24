@@ -5,7 +5,7 @@ git config user.email "sayedgyussif@gmail.com"
 
 git remote add up "https://$GITTOKEN@github.com/youssifsayed/youssifsayed.github.io.git"
 git clone https://github.com/youssifsayed/youssifsayed.github.io.git ./
-git checkout --orphan gh-pages
+git checkout master
 
 git rm -rf .
 
