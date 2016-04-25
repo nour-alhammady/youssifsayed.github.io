@@ -26,9 +26,10 @@ const fs     = require("fs"),
 	postsInpage       = 4,
 	mkReander         = new marked.Renderer(),
 	out               = `${__dirname}/gh_pages`,
-	indexs            = []
+	indexs            = [], 
+	rss               = [{ _attr: {version: "2.0"}}]
 
-
+// --- markdown ---
 mkReander.heading = function (text, level) {
   var anchor = text.replace(/ /g, '-');
 
@@ -64,26 +65,6 @@ marked.setOptions({
 	sanitize: true,
 	smartLists: true
 })
-
-gulp.task("default", ["setup", "index", "tags", "posts", "extra", "theme.scss", "sitemap"])
-
-function mkdirP(dir) {
-	try {
-		fs.accessSync(dir, fs.F_OK);
-	} catch (e) {
-		return fs.mkdirSync(dir);
-	}
-}
-
-
-gulp.task("setup", function () {
-	mkdirP(out)
-	mkdirP(`${out}/tag`)
-	mkdirP(`${out}/index`)
-	mkdirP(`${out}/post`)
-	mkdirP(`${out}/tag`)
-})
-
 function markdown(file) {
 	if (typeof markdownCache[file] == "string") return markdownCache[file]
 	
@@ -94,6 +75,27 @@ function markdown(file) {
 	return markdownCache[file] || ""
 }
 
+
+gulp.task("default", ["setup", "index", "tags", "posts", "extra", "theme.scss", "sitemap"])
+
+// make directory if not exist.
+function mkdirP(dir) {
+	try {
+		fs.accessSync(dir, fs.F_OK);
+	} catch (e) {
+		return fs.mkdirSync(dir);
+	}
+}
+
+// create required build directories.
+gulp.task("setup", function () {
+	mkdirP(out)
+	mkdirP(`${out}/tag`)
+	mkdirP(`${out}/index`)
+	mkdirP(`${out}/post`)
+	mkdirP(`${out}/tag`)
+})
+
 function postHTMLName(name) {
 	return name.replace(/\s/g, '-') + '.html'
 }
@@ -102,7 +104,7 @@ function postRender(post, full) {
 	full = !!full;
 	var articleTemplate = fs.readFileSync(`${__dirname}/templates/article.ejs`, "utf8"),
 	    postConfig      = createConfig(),
-		description     = (full && markdown(post.post)) ||
+		HTMLContent     = (full && markdown(post.post)) ||
 						  (post.description && `<p>${post.description}</p>`) || 
 						  (typeof post.post == "string" && post.post.length > 0 
 						  ? markdown(post.post).match(post.readPostOnIndexTo ? new RegExp(post.readPostOnIndexTo, "i") : ReadPostOnIndexTo)[0] : ""),
@@ -113,7 +115,7 @@ function postRender(post, full) {
 	postConfig.postTags       = typeof post.tags == "string" ? 
 								post.tags.split(" ") : []
 	postConfig.postImage      = post.img
-	postConfig.articleContent = description
+	postConfig.articleContent = HTMLContent
 	postConfig.postDate       = post.date
 
 	if (!full) {
@@ -127,7 +129,7 @@ function postRender(post, full) {
 		postConfig.readMore = readMoreTitle
 	} else { postConfig.readMore = "" }
 	
-	return ejs.render(articleTemplate, postConfig)
+	return {content: ejs.render(articleTemplate, postConfig), data: postConfig} 
 }
 
 function writeIndexs(done, posts, writeTo, title) {
@@ -152,7 +154,7 @@ function writeIndexs(done, posts, writeTo, title) {
 			let post        = posts[(i * postsInpage) + pi];
 			if (typeof post  == "undefined") break;
 			
-			postsHTML.push(postRender(post))
+			postsHTML.push(postRender(post).content)
 		}
 		
 		indexConfig.articles = postsHTML
@@ -170,6 +172,16 @@ gulp.task("index", function (done) {
 		fs.createReadStream(`${out}/index/index.html`).pipe(fs.createWriteStream(`${out}/index.html`))
 		done()
 	}
+	
+	rss.push({
+		channel: [
+			{ author: "Youssif Sayed <sayedgyussif@gmail.com>" },
+			{ title: config.blogname },
+			{ description: config.blogdescription },
+			{ link: siteurl }
+		]
+	})
+	
 	writeIndexs(copy, posts, `${out}/index/`)
 })
 
@@ -206,7 +218,7 @@ gulp.task("posts", function (done) {
 		postTemplate     = fs.readFileSync(`${__dirname}/templates/post.ejs`, "utf8"),
 		headerTemplate   = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
 		footerTemplate   = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
-		length           = posts.length;
+		index            = posts.length;
 		
 		
 	postsConfig.activedList = "blog"
@@ -214,21 +226,31 @@ gulp.task("posts", function (done) {
 	postsConfig.footer      = ejs.render(footerTemplate, postsConfig)
 	
 	for (let post of posts) {
-		if (!post.name) {
-			length--;
-			continue;
-		}
+		if (!post.name) continue; // external post
 		
 		let postConfig = Object.create(postsConfig),
-			name       = postHTMLName(post.name)
+			name       = postHTMLName(post.name),
+			postData   = postRender(post, true)
 		
 		postConfig.pageTitle       = post.title;
-		postConfig.postContent     = postRender(post, true)
+
+		postConfig.postContent     = postData.content
 		postConfig.postDescription = fs.readFileSync(`${__dirname}/posts-md/${post.post}`, "utf-8").match(typeof postConfig.readPostOnIndexTo !== "string" ?
 									 new RegExp(post.readPostOnIndexTo, "i") : ReadPostOnIndexTo)[0]
 
+		if (index < 6) {
+			rss.push({
+				"item": [
+					{ title: postConfig.pageTitle },
+					{ link: `${siteurl}post/${postHTMLName(post.name)}` },
+					{ description: postConfig.postDescription },
+				]
+			})
+		}
 
 		fs.writeFileSync(`${out}/post/${name}`, ejs.render(postTemplate, postConfig))
+		
+		index--
 	}
 	done()
 });
@@ -254,7 +276,13 @@ gulp.task("extra", function (done) {
 	done()
 })
 
-gulp.task("sitemap", function () {
+gulp.task("rss", function () {
+	fs.writeFileSync(`${out}/rss.xml`, '<?xml version="1.0" encoding="UTF-8"?>\n' + xml({
+		"rss": rss
+	}))
+})
+
+gulp.task("sitemap", ["rss"], function () {
 	var urlset    = [{ _attr: { xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" }}],
 		urlsList = indexs.concat([
 			`${siteurl}`,
