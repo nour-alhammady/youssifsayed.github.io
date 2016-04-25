@@ -1,13 +1,9 @@
 <!doctype html>
 <html>
 	<head>
-		<base target="_blank">
-		<meta charset="utf-8">
+		<%- headertags %>
 		<title><%= typeof pageTitle == "string" && pageTitle.length > 0 ? `${pageTitle} - ` : ""; %><%= blogname %></title>
 		<meta name="description" content="<%= postDescription %>">
-		<meta name="author" content="Youssif Sayed">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="<%= blogurl %>/resource/css/theme.css">
 	</head>
 	<body>
 		<div class="blog-main">

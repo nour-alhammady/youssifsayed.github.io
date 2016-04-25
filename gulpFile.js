@@ -17,18 +17,27 @@ const fs     = require("fs"),
 		blogdescription: "مدونة شخصية ذات ميول برمجيِّة.",
 		blogurl: siteurl
 	},
-	createConfig      = () => { return Object.create(config) }, // clone config
-	marked            = require("marked"),
-	highlight         = require("highlight.js"),
-	prism             = require('prismjs'),
-	markdownCache     = [],
-	ReadPostOnIndexTo = /[^\.]+\./,
-	postsInpage       = 4,
-	mkReander         = new marked.Renderer(),
-	out               = `${__dirname}/gh_pages`,
-	indexs            = [], 
-	rss               = [{ _attr: {version: "2.0"}}]
+	createConfig       = () => { return Object.create(config) }, // clone config
+	marked             = require("marked"),
+	highlight          = require("highlight.js"),
+	prism              = require('prismjs'),
+	markdownCache      = [],
+	ReadPostOnIndexTo  = /[^\.]+\./,
+	postsInpage        = 4,
+	mkReander          = new marked.Renderer(),
+	out                = `${__dirname}/gh_pages`,
+	indexs             = [], 
+	rss                = [{ _attr: {version: "2.0"}}],
+	headerTemplate     = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
+	indexTemplate      = fs.readFileSync(`${__dirname}/templates/index.ejs`, "utf8"),
+	footerTemplate     = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
+	headerTagsTemplate = fs.readFileSync(`${__dirname}/templates/headertags.ejs`, "utf8"),
+	articleTemplate    = fs.readFileSync(`${__dirname}/templates/article.ejs`, "utf8"),
+	postTemplate     = fs.readFileSync(`${__dirname}/templates/post.ejs`, "utf8"),
+	connectmeTemplate = fs.readFileSync(`${__dirname}/templates/connectme.ejs`, "utf8"),
+	readmeTemplate    = fs.readFileSync(`${__dirname}/templates/readme.ejs`, "utf8")
 
+		
 // --- markdown ---
 mkReander.heading = function (text, level) {
   var anchor = text.replace(/ /g, '-');
@@ -102,8 +111,7 @@ function postHTMLName(name) {
 
 function postRender(post, full) {
 	full = !!full;
-	var articleTemplate = fs.readFileSync(`${__dirname}/templates/article.ejs`, "utf8"),
-	    postConfig      = createConfig(),
+	var postConfig      = createConfig(),
 		HTMLContent     = (full && markdown(post.post)) ||
 						  (post.description && `<p>${post.description}</p>`) || 
 						  (typeof post.post == "string" && post.post.length > 0 
@@ -134,9 +142,6 @@ function postRender(post, full) {
 
 function writeIndexs(done, posts, writeTo, title) {
 	var indexConfig      = createConfig(),
-		headerTemplate   = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
-		indexTemplate    = fs.readFileSync(`${__dirname}/templates/index.ejs`, "utf8"),
-		footerTemplate   = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
 		size             = parseInt((posts.length / postsInpage + (posts.length
 						 % postsInpage > 0 && 1)).toString()), indexHtml
 
@@ -157,8 +162,9 @@ function writeIndexs(done, posts, writeTo, title) {
 			postsHTML.push(postRender(post).content)
 		}
 		
-		indexConfig.articles = postsHTML
-		indexHtml            = ejs.render(indexTemplate, indexConfig)
+		indexConfig.articles     = postsHTML
+		indexConfig.headertags   = ejs.render(headerTagsTemplate, indexConfig)
+		indexHtml                = ejs.render(indexTemplate, indexConfig)
 	
 		indexs.push((siteurl.replace(/\/$/i, "") + path.resolve(filename).replace(path.resolve(out), "")).replace(/(\\)+/g, '/'))
 	
@@ -175,7 +181,7 @@ gulp.task("index", function (done) {
 	
 	rss.push({
 		channel: [
-			{ author: "Youssif Sayed <sayedgyussif@gmail.com>" },
+			{ author: "Youssif Sayed, sayedgyussif@gmail.com" },
 			{ title: config.blogname },
 			{ description: config.blogdescription },
 			{ link: siteurl }
@@ -215,9 +221,6 @@ gulp.task("tags", function (done) {
 
 gulp.task("posts", function (done) {
 	var postsConfig 	 = createConfig(),
-		postTemplate     = fs.readFileSync(`${__dirname}/templates/post.ejs`, "utf8"),
-		headerTemplate   = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
-		footerTemplate   = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8"),
 		index            = posts.length;
 		
 		
@@ -235,8 +238,9 @@ gulp.task("posts", function (done) {
 		postConfig.pageTitle       = post.title;
 
 		postConfig.postContent     = postData.content
-		postConfig.postDescription = fs.readFileSync(`${__dirname}/posts-md/${post.post}`, "utf-8").match(typeof postConfig.readPostOnIndexTo !== "string" ?
+		postConfig.postDescription = fs.readFileSync(`${__dirname}/posts-md/${post.post}`, "utf-8").match(typeof post.readPostOnIndexTo == "string" ?
 									 new RegExp(post.readPostOnIndexTo, "i") : ReadPostOnIndexTo)[0]
+		postConfig.headertags = ejs.render(headerTagsTemplate, postConfig)
 
 		if (index < 6) {
 			rss.push({
@@ -256,13 +260,10 @@ gulp.task("posts", function (done) {
 });
 
 gulp.task("extra", function (done) {
-	var pgconfig          = createConfig(),
-		connectmeTemplate = fs.readFileSync(`${__dirname}/templates/connectme.ejs`, "utf8"),
-		readmeTemplate    = fs.readFileSync(`${__dirname}/templates/readme.ejs`, "utf8"),
-		headerTemplate    = fs.readFileSync(`${__dirname}/templates/header.ejs`, "utf8"),
-		footerTemplate    = fs.readFileSync(`${__dirname}/templates/footer.ejs`, "utf8")
+	var pgconfig          = createConfig();
 	
 	pgconfig.footer      = ejs.render(footerTemplate, pgconfig)
+	pgconfig.headertags  = ejs.render(headerTagsTemplate, pgconfig)
 	pgconfig.activedList = "connectme";
 	pgconfig.header      = ejs.render(headerTemplate, pgconfig)
 			
