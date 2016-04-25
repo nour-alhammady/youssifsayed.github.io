@@ -9,6 +9,7 @@ const fs     = require("fs"),
 	gulpSCSS = require("gulp-sass"),
 	xml      = require("xml"),
 	ejs      = require("ejs"),
+	path     = require("path"),
 	posts    = require(`${__dirname}/postsMap.json`),
 	siteurl  = "http://youssif.me/",
 	config   = {
@@ -24,7 +25,8 @@ const fs     = require("fs"),
 	ReadPostOnIndexTo = /[^\.]+\./,
 	postsInpage       = 4,
 	mkReander         = new marked.Renderer(),
-	out               = `${__dirname}/gh_pages`
+	out               = `${__dirname}/gh_pages`,
+	indexs            = []
 
 
 mkReander.heading = function (text, level) {
@@ -63,7 +65,7 @@ marked.setOptions({
 	smartLists: true
 })
 
-gulp.task("default", ["setup", "sitemap", "index", "tags", "posts", "extra", "theme.scss"])
+gulp.task("default", ["setup", "index", "tags", "posts", "extra", "theme.scss", "sitemap"])
 
 function mkdirP(dir) {
 	try {
@@ -143,7 +145,8 @@ function writeIndexs(done, posts, writeTo, title) {
 	indexConfig.footer      = ejs.render(footerTemplate)
 
 	for (let i=0; i < size; i++) {
-		let postsHTML = []
+		let postsHTML = [],
+			filename  = `${writeTo}/index${i > 0 ? '-' + (i+1) : ''}.html`
 		
 		for (let pi=0; pi < postsInpage; pi++) {
 			let post        = posts[(i * postsInpage) + pi];
@@ -155,7 +158,9 @@ function writeIndexs(done, posts, writeTo, title) {
 		indexConfig.articles = postsHTML
 		indexHtml            = ejs.render(indexTemplate, indexConfig)
 	
-		fs.writeFileSync(`${writeTo}/index${i > 0 ? '-' + (i+1) : ''}.html`, indexHtml)
+		indexs.push((siteurl.replace(/\/$/i, "") + path.resolve(filename).replace(path.resolve(out), "")).replace(/(\\)+/g, '/'))
+	
+		fs.writeFileSync(`${filename}`, indexHtml)
 	}
 	done()
 }
@@ -250,16 +255,30 @@ gulp.task("extra", function (done) {
 })
 
 gulp.task("sitemap", function () {
-	var urlset = [{ _attr: { xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" }}]
-	for (var post of posts) {
+	var urlset    = [{ _attr: { xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" }}],
+		urlsList = indexs.concat([
+			`${siteurl}`,
+			`${siteurl}connectme.html`,
+			`${siteurl}readme.html`
+		])
+	
+	
+	for (let post of posts) {
 		let name = post.name
 		if (typeof name == "string") {
-			urlset.push({url: [{loc: `${siteurl}post/${postHTMLName(name)}`}]})
+			urlsList.push(`${siteurl}post/${postHTMLName(name)}`)
 		}
 	}
+	
+	for (let url of urlsList) {
+		urlset.push({url: [{loc: url}]})
+	}
+	
+	
 	fs.writeFileSync(`${out}/sitemap.xml`, '<?xml version="1.0" encoding="UTF-8"?>\n' + xml({
 		"urlset": urlset
 	}))
+	fs.writeFileSync(`${out}/sitemap.txt`, urlsList.join("\n"))
 })
 
 gulp.task("theme.scss", function () {
