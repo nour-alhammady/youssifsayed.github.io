@@ -1,5 +1,14 @@
 [
 	{
+		"title": "سلسلة شرح TypeScript: المقال الثان بعض الأنواع الأساسية، والمتغيرات والثوابت في ES6",
+		"post": "typescript2.md",
+		"name": "typescript types, and variables, constants in es6",
+		"tags": "typescript javascript es6 types",
+		"date": "كتب في 6 شعبان 1437هـ الموافق 14 مايو لسنة 2016م.",
+		"img": "/resource/post-img/typescript.png",
+		"readPostOnIndexTo": "([^.]+.){2}"
+	},
+	{
 		"title": "أساسيات استخدام خدمة Travis CI لإختبار المشاريع المستضافة على GitHub.",
 		"post": "TravisCI.md",
 		"name": "get started with Travis CI",
@@ -21,7 +30,7 @@
 		"description": "سنتعرّف في هذا الدّرس على أداة nw (سابقًا node-webkit) المُخصّصة لتطوير تطبيقات سطح المكتب العابرة للمنصات؛ باستخدام مُتصفّح كروميوم [Chromium  [1 و node.js. حيث أصبح بالإمكان استخدام تقنيات الوِب الحديثة لتطوير برمجيات قادرة على الاستفادة من موارد النظام؛ كالتحكّّم بالملفات، استعمال قواعد البيانات وغيرها من الأمور. في هذا الدّرس سنتعلّم كيفية كتابة تطبيق لسطح المكتب باستخدام nw لتشغيل ملفّات الفيديو. لنبدأ.",
 		"tags": "nw nodejs javascript",
 		"img": "https://academy.hsoub.com/uploads/monthly_2015_11/nwjs-init.thumb.png.60a6d9fdd852fef1ff0cec0ab5c41b79.png",
-		"date": "كتب في 17 صفر لسنة 1437هـ الموافق 30 نوفمبر لسنة 2016م.",
+		"date": "كتب في 17 صفر لسنة 1437هـ الموافق 30 نوفمبر لسنة 2015م.",
 		"link": {
 			"title": "أكمل المقال على أكادمية حسوب",
 			"link": "https://academy.hsoub.com/programming/javascript/%D9%85%D8%AF%D8%AE%D9%84-%D8%A5%D9%84%D9%89-%D8%AA%D8%B7%D9%88%D9%8A%D8%B1-%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%B3%D8%B7%D8%AD-%D9%85%D9%83%D8%AA%D8%A8-%D9%85%D8%A8%D9%86%D9%8A%D8%A9-%D8%B9%D9%84%D9%89-nodejs-%D9%88-nwjs-r208/"
