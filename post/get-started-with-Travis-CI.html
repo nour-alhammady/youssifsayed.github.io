@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Youssif Sayed, sayedgyussif@gmail.com">
+<meta name="language" content="Arabic"> 
+<meta name='subject' content='مدونة شخصية ذات ميول برمجيِّة.'>
+<meta name='blogcatalog'>
+<link rel="index" title="مدونة يوسف سيد" href="http://youssif.me/">
+<link rel="stylesheet" type="text/css" href="http://youssif.me/resource/css/theme.css">
+<link rel='author' href='http://youssif.me/readme.html' type='text/plain'>
+<link rel="alternate" type="application/rss+xml" title="تغذية المدوّنة" href="http://youssif.me/rss.xml"/>
+
+		<title>أساسيات استخدام خدمة Travis CI لإختبار المشاريع المستضافة على GitHub. - مدونة يوسف سيد</title>
+		<meta name="description" content="##المشكلة
+تعمل جاهدًا على مشروع كبير، أضعت به الكثير من الوقت من بين تعديل وتجربة؛ كلما عدلت جزءًا بسيطًا قمت بإعادة التجربة من ثم تقوم ببناء ونشر المشروع!؛ أضعت الكثير من الوقت، وزاد الطين بلة مشاركة بعض المساهمين معك لديك الكثير من التعديلات التي تنتظر المراجعة والنشر، هذا مع أنك تضطر إلى اختبار عمل مشروعك على العديد من الإصدارات للمكتبات والأدوات المختلفة!.">
+	</head>
+	<body>
+		<div class="blog-main">
+			<header><span class="logo">
+	<div>
+		<h1 class="blog-name"><a href="http://youssif.me/" target="_self">مدونة يوسف سيد</a></h1>
+		<p class="blog-description"><a href="http://youssif.me/" target="_self">مدونة شخصية ذات ميول برمجيِّة.</a></p>
+	</div>
+</span>
+<nav class="blog-nav">
+	<ul class="blog-menu">
+		
+			<li class="blog-list actived">
+				<a href="http://youssif.me/">المدونة<a/>
+			</li>
+		
+			<li class="blog-list">
+				<a href="http://youssif.me/connectme.html">تواصل معي<a/>
+			</li>
+		
+			<li class="blog-list">
+				<a href="http://youssif.me/readme.html">من أنا<a/>
+			</li>
+		
+	</ul>
+	<a class="twitter" href="https://twitter.com/echoYOussif"></a>
+</nav></header>
+			<main>
+				<article>
+	<h2 class="post-header">
+		<a class="post-title" href="" target="__self">أساسيات استخدام خدمة Travis CI لإختبار المشاريع المستضافة على GitHub.</a>
+		<span class="tags">
+			
+				<a class="tag" href="http://youssif.me/tag/Travis-CI">Travis-CI</a>
+			
+				<a class="tag" href="http://youssif.me/tag/GitHub">GitHub</a>
+			
+		</span>
+	</h2>
+	
+		<img class="post-img" alt="أساسيات استخدام خدمة Travis CI لإختبار المشاريع المستضافة على GitHub." title="أساسيات استخدام خدمة Travis CI لإختبار المشاريع المستضافة على GitHub." src="/resource/post-img/Travis-CI-post.png">
+	
+	<div class="post-content">
+		<p class="post-date"><i>كتب في 17 رجب 1437هـ الموافق 24 أبريل لسنة 2016م.</i></p>
+		<h2><a href="#المشكلة" class="anchor" name="المشكلة">
+  					المشكلة</a></h2><p>تعمل جاهدًا على مشروع كبير، أضعت به الكثير من الوقت من بين تعديل وتجربة؛ كلما عدلت جزءًا بسيطًا قمت بإعادة التجربة من ثم تقوم ببناء ونشر المشروع!؛ أضعت الكثير من الوقت، وزاد الطين بلة مشاركة بعض المساهمين معك لديك الكثير من التعديلات التي تنتظر المراجعة والنشر، هذا مع أنك تضطر إلى اختبار عمل مشروعك على العديد من الإصدارات للمكتبات والأدوات المختلفة!.</p>
+<h2><a href="#الحل" class="anchor" name="الحل">
+  					الحل</a></h2><p> إن قررت أخيرًا أن تجد حلًا لهذه المشكلة فانت في المقال الصحيح، في هذا الدرس سنتحدث عن أساسيات استخدام Travis CI، وهي خدمة تواصل متكامل(Continuous Integration) مجانية -بشكل مبدئي- ومفتوحة المصدر، للمشاريع المستضافة على GitHub، توَّفر طريقة سهلة لتجربة المشاريع ونشرها بدون إضاعة الكثير من الوقت والعمل.<br>ملاحظة: يفترض أنّك تجيد التعامل مع GitHub بشكل أولي على الأقل قبل إكمال المقال.</p>
+<h2><a href="#GitHub!-إذًا-لا-تصلح-لمشروعي-مغلق-المصدر" class="anchor" name="GitHub!-إذًا-لا-تصلح-لمشروعي-مغلق-المصدر">
+  					GitHub! إذًا لا تصلح لمشروعي مغلق المصدر</a></h2><p>لا تقلق Travis CI تدعم الوصول إلى مشاريعك الخاصة المخفية على GitHub لكن عليك أن تدفع $$$ مقابل ذلك:)، <a href="https://travis-ci.com/plans">الخطط والأسعار لtravis CI</a>، وطبعًا قبل هذا يجب أن تكون تملك حساب مدفوع على GitHub لاستضافة مشاريعك خاصة، إن كنت لن تنشر إلا مشاريع مفتوحة المصدر لا تشغل نفسك بهذا.</p>
+<h2><a href="#ما-هي-اللغات-المدعومة" class="anchor" name="ما-هي-اللغات-المدعومة">
+  					ما هي اللغات المدعومة</a></h2><p>Travis CI تدعم <a href="https://docs.travis-ci.com/user/languages/">الكثير من اللغات</a> افتراضيًّا، لكن لا مشكلة من أن تقوم بدعم لغةً ما بنفسك، -<strong>قد</strong> أكتب عن هذا لاحقًا.</p>
+<h3><a href="#لا-تدعم-ويندوز.NET-بشكل-افتراضي-لكن" class="anchor" name="لا-تدعم-ويندوز.NET-بشكل-افتراضي-لكن">
+  					لا تدعم ويندوز.NET بشكل افتراضي لكن</a></h3><p>ربما تكون Travis CI غير مناسبة لمشروع يستهدف ويندوز في الكثير من حالات المشاريع التي تستخدم فيها لغات مجمّعة خصوصًا لغات .NET، مع ذلك يوجد بعض الحلول لتجميع الشيفرة لويندوز .NET، باستخدام  <a href="https://docs.travis-ci.com/user/languages/csharp/">Mono</a> في هذه الحالة يجب أن يكون مشروعك يدعم البناء باستخدام Mono.</p>
+<h2><a href="#لنبدأ" class="anchor" name="لنبدأ">
+  					لنبدأ</a></h2><p>أولًا عبر حسابك في GitHub سجّل في <a href="http://travis-ci.org">Travis-ci.org</a> أو <a href="http:// Travis-ci.com">Travis-ci.com</a> -في حالة ما كنت تريد نشر مستودعات خاصة.</p>
+<h3><a href="#مزامنة-مستودع-من-GitHub" class="anchor" name="مزامنة-مستودع-من-GitHub">
+  					مزامنة مستودع من GitHub</a></h3><p>بعد تسجيل الدخول من خلال الواجهة الرئيسة أضف مزامنة مستودع.<br><img src='http://youssif.me//resource/post-img/travisCi-new.jpg' alt="أضف مستودع" title="أضف مستودع"><br>من ثم سيظهر لك قائمة بالمستودعات الخاصة بك على GitHub علم على أحداها لتشغيل المزامنة.<br><img src='http://youssif.me//resource/post-img/travisCi-new1.jpg' alt="أضف مستودع" title="أضف مستودع"></p>
+<h3><a href="#ملف-البناء" class="anchor" name="ملف-البناء">
+  					ملف البناء</a></h3><p>يتكون ملف البناء(.travis.yml) من عمليات متتالية في صياغة YML، -يجب أن  يتواجد الملف في المسار الجذر للمشروع، لنبدأ بمثال لاختبار عمل مشروع بNodejs:</p>
+<pre><code class="language-yaml">    <span class="token comment" spellcheck="true"># اللغة اطلع على اللغات المدعومة</span>
+    <span class="token key atrule">language</span><span class="token punctuation">:</span> node_js
+    <span class="token comment" spellcheck="true"># لا نحتاج إلى التنفيذ كمدير</span>
+    <span class="token key atrule">sudo</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment" spellcheck="true"># إصدارات Node.js التي سنجرب عليها</span>
+    <span class="token key atrule">node_js</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"0.10"</span>
+      <span class="token punctuation">-</span> <span class="token string">"0.12"</span>
+      <span class="token punctuation">-</span> <span class="token string">"4"</span>
+      <span class="token punctuation">-</span> <span class="token string">"5"</span>
+</code></pre>
+<p>سيحاول البناء على جميع إصدارات node_js التي أدخلناها بالطبع سيفشل الاختبار لإننا لم نستخدم أيًّا من أدوات البناء لnodejs،</p>
+<p><img src='http://youssif.me//resource/post-img/Travis-Report.jpg' alt="الناتج" title="الناتج"><br> في حالة ما أردت رؤية مشروع كامل بNodeJs يمكنك الإطلاع على <a href="https://github.com/youssifsayed/youssifsayed.github.io">شيفرة مدونتي على GitHub</a> استخدم فيها Travis CI و<a href="https://travis-ci.org/youssifsayed/youssifsayed.github.io">تقارير البناء على Travis CI</a>.<br>ملاحظة:<br>مع أنه يفضل لو تستخدم الممارسة السائدة للبناء والاختبار في لغتك فمثلًا في لغة C الشائع <code>configure &amp;&amp; make</code> لكي يتعرف Travis CI عليها إلا أنه يمكنك القيام <a href="https://docs.travis-ci.com/user/customizing-the-build/">ببعض التخصيص</a>،  في مقال قادم بإذن الله سأتحدث عن نشر البناء، وعمليات الاختبار، واستخدامات غير معتادة للصفح في GitHub.1</p>
+
+	</div>
+</article>
+
+				
+				<div id="disqus_thread"></div>
+				<script>
+				/**
+				* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+				* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+				*/
+				/*
+				var disqus_config = function () {
+				this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+				};
+				*/
+				(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+
+				s.src = '//youssifsayedio.disqus.com/embed.js';
+
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+				})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			</main>
+		</div>
+		<footer class="footer blog-main">
+	<p>© يوسف سيد المحتوى في المدونة مرخص تحت <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> مالم يظهر عكس ذلك، حقوق الآخرين محفوظة لهم.</p>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-42951392-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+</footer>
+		<script id="dsq-count-scr" src="//youssifsayedio.disqus.com/count.js" async></script>
+	</body>
+</html>

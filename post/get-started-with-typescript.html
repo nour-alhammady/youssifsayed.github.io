@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Youssif Sayed, sayedgyussif@gmail.com">
+<meta name="language" content="Arabic"> 
+<meta name='subject' content='مدونة شخصية ذات ميول برمجيِّة.'>
+<meta name='blogcatalog'>
+<link rel="index" title="مدونة يوسف سيد" href="http://youssif.me/">
+<link rel="stylesheet" type="text/css" href="http://youssif.me/resource/css/theme.css">
+<link rel='author' href='http://youssif.me/readme.html' type='text/plain'>
+<link rel="alternate" type="application/rss+xml" title="تغذية المدوّنة" href="http://youssif.me/rss.xml"/>
+
+		<title>سلسلة شرح TypeScript: المقال الأول مقدمة والتعريف باللغة. - مدونة يوسف سيد</title>
+		<meta name="description" content="بدأت تسمع عن لغة TypeScript -المستخدمة من قبل Angular 2- في كل مكان؟، وترغب في التعرّف عليها، وما علاقتها بلغة JavaScript ولماذا قد يجب عليك أن تستخدمها؟
+ستساعدك هذه السلسلة من المقالات في التعرّف على اللَّغة وخصائصها، وتعلّم الكتابة بها. في هذا الدَّرس سأتحدث عن الفرق بينها وبين JavaScript، ولماذا تستخدمها، وآلية التطوير بها. هذه السلسلة مقدمة لمن لا يجيد البرمجة، ويفضل أن يكون لديك معرفة ولو بسيطة بلغة JavaScript.">
+	</head>
+	<body>
+		<div class="blog-main">
+			<header><span class="logo">
+	<div>
+		<h1 class="blog-name"><a href="http://youssif.me/" target="_self">مدونة يوسف سيد</a></h1>
+		<p class="blog-description"><a href="http://youssif.me/" target="_self">مدونة شخصية ذات ميول برمجيِّة.</a></p>
+	</div>
+</span>
+<nav class="blog-nav">
+	<ul class="blog-menu">
+		
+			<li class="blog-list actived">
+				<a href="http://youssif.me/">المدونة<a/>
+			</li>
+		
+			<li class="blog-list">
+				<a href="http://youssif.me/connectme.html">تواصل معي<a/>
+			</li>
+		
+			<li class="blog-list">
+				<a href="http://youssif.me/readme.html">من أنا<a/>
+			</li>
+		
+	</ul>
+	<a class="twitter" href="https://twitter.com/echoYOussif"></a>
+</nav></header>
+			<main>
+				<article>
+	<h2 class="post-header">
+		<a class="post-title" href="" target="__self">سلسلة شرح TypeScript: المقال الأول مقدمة والتعريف باللغة.</a>
+		<span class="tags">
+			
+				<a class="tag" href="http://youssif.me/tag/typescript">typescript</a>
+			
+				<a class="tag" href="http://youssif.me/tag/javascript">javascript</a>
+			
+				<a class="tag" href="http://youssif.me/tag/es6">es6</a>
+			
+		</span>
+	</h2>
+	
+		<img class="post-img" alt="سلسلة شرح TypeScript: المقال الأول مقدمة والتعريف باللغة." title="سلسلة شرح TypeScript: المقال الأول مقدمة والتعريف باللغة." src="/resource/post-img/typescript.png">
+	
+	<div class="post-content">
+		<p class="post-date"><i>كتب في 15 رجب 1437هـ الموافق 22 أبريل لسنة 2016م.</i></p>
+		<p>بدأت تسمع عن لغة TypeScript -المستخدمة من قبل Angular 2- في كل مكان؟، وترغب في التعرّف عليها، وما علاقتها بلغة JavaScript ولماذا قد يجب عليك أن تستخدمها؟<br>ستساعدك هذه السلسلة من المقالات في التعرّف على اللَّغة وخصائصها، وتعلّم الكتابة بها. في هذا الدَّرس سأتحدث عن الفرق بينها وبين JavaScript، ولماذا تستخدمها، وآلية التطوير بها. هذه السلسلة مقدمة لمن لا يجيد البرمجة، ويفضل أن يكون لديك معرفة ولو بسيطة بلغة JavaScript. لِنبدأ المقال بأهدافه:</p>
+<ol>
+<li>التعريف بلغة TypeScript.</li>
+<li>مواضع التشابه بين TypeScript وJavaScript.</li>
+<li>أين تُستخدم TypeScript?</li>
+<li>لماذا TypeScript!</li>
+<li>إعداد بيئة TypeScript تثبيت (Node.js، وأدوات اللَّغة (المجمِّع ومدير الحزم)).</li>
+<li>التعرف على ملفَّات المشروع ل TypeScript.</li>
+</ol>
+<h2><a href="#تعريف" class="anchor" name="تعريف">
+  					تعريف</a></h2><p>TypeScript هي لغةٌ برمجيَّةٌ  مترجمةٌ(تترجم إلى JavaScript). تتبع الإصدار السادس من مواصفة ECMAScript (ES6)، مع بعض الخصائص الخاصة للغة. هذه اللَّغة مُقدمة من Microsoft.</p>
+<h3><a href="#مواصفة-ECMAScript" class="anchor" name="مواصفة-ECMAScript">
+  					مواصفة ECMAScript</a></h3><p>كُتبتْ في الأصل مواصفة ECMAScript لتوحيد المعايير بين JavaScript وJScript(المستخدمة في IE)، يوجد منها عدِّة إصدارات مُختلفة ES3, ES5, ES6...، أغلب محركات JavaScript, Jscript صارت تدعم معظم خصائص الإصدار الخامس ES5، مع دعم بعض خصائص الإصدار السادس ES6، عمومًا. لأنَّ TypeScript الأخرى مُصمّمة على مواصفة ECMAScript(ES6) يفسر ذلك التشابه بين JavaScript وTypeScript؛ بحيث سيعمل -على الأرجح- أي ملف TypeScript بصيغة ts، كملفَّ JavaScript  ،والعكس؛ يتوقف ذلك على دعم مواصفة ES6 من قبل المحرك، واستخدام خصائص TypeScript الخاصة.</p>
+<h3><a href="#أين-تعمل-TypeScript" class="anchor" name="أين-تعمل-TypeScript">
+  					أين تعمل TypeScript</a></h3><p>حيث تعمل JavaScript تعمل TypeScript، سواءً في الوِب، Node.js، أو حتى <a href="http://goo.gl/rmYltR">تطوير تطبيقات سطح مكتب</a> …، ويمكن اِستخدام شيفرات JavaScript بداخل شيفرات TypeScript، فقط ستحتاج إلى استدعاء ملفّات الإعلان لشيفرات JavaScript التي ستستخدمها بداخل TypeScript، واِنطلاقًا من الإصدار 1.8 سيمكنك تضمين شيفرات JavaScript مع TypeScript بسهولة.</p>
+<h2><a href="#لماذا-TypeScript" class="anchor" name="لماذا-TypeScript">
+  					لماذا TypeScript</a></h2><p>سيكون السؤال الآن &quot;لماذا أستخدم TypeScript إن كانت JavaScript تفي بنفس الغرض؟، هذا بالإضافة إلى أنَّ TypeScript لن تنتج أي شيء خارج إطار JavaScript!&quot;، صُمِّمتْ  TypeScript في الأصل لتستطيع كتابة شيفرات JavaScript بطريقة مثلى، بحيث ينتهي عمل TypeScript بعد مرحلة البناء، وما إن تصبح الشيفرة قابلة للتنفيذ بلغة JavaScript. هذه بعض المقارنات بين TypeScript وjavaScript الّتي قد تجعلك تكتب شيفرات JavaScript المستقبلية باِستخدام TypeScript:</p>
+<h3><a href="#نظام-الأنواع" class="anchor" name="نظام-الأنواع">
+  					نظام الأنواع</a></h3><p>تأتي TypeScript بنظام أنواع من نوع Strongly Typed؛ يساعد ذلك على اِختبار عمل الشيفرة في وقت البناء والتوقع بعمل النظام بشكل صحيح.</p>
+<h4><a href="#لماذا-تحتاج-شيفرة-JavaScript-إلى-أنواع؟" class="anchor" name="لماذا-تحتاج-شيفرة-JavaScript-إلى-أنواع؟">
+  					لماذا تحتاج شيفرة JavaScript إلى أنواع؟</a></h4><h5><a href="#التأكد-من-الإدخال-الصحيح" class="anchor" name="التأكد-من-الإدخال-الصحيح">
+  					التأكد من الإدخال الصحيح</a></h5><p>عند كتابة وظيفة بلغة JavaScript فلا يمكن ضمان إدخال نوع مُعيَّن من البيانات، وسيتوجب كتابة بعض الشيفرات الإضافية للوظيفة للتأكد من عملية الإدخال الصحيح؛ لكي تتوقع عمل الشيفرة بشكل صحيح، وعدم حدوث أخطاء -من المفسر- في جميع الحالات، يكون الأمر أكثر إزعاجًا إن أردنا التأكد من إدخال نوع صنف معين؛ بحيث سيتوجب عليك التأكد من كل تابع على حدى، والتأكد من أنه صنف أولًا. مع أنَّ لغة TypeScript لا يمكنها التأكد من الإدخال الصحيح للأنواع بعد أن تترجم شيفرتها إلى JavaScript؛ إلا أنها توَّفر التأكد من الإدخال الصحيح أثناء تطوير الشيفرة -مرحلة الكتابة بلغةTypeScript. لنأخذ مثالًا على ذلك:<br>شيفرة TypeScript:</p>
+<pre><code class="language-typescript">    <span class="token comment" spellcheck="true">// وجه</span>
+    <span class="token keyword">interface</span> <span class="token class-name">Point</span><span class="token punctuation">{</span>
+        X<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">,</span>
+        Y<span class="token punctuation">:</span> <span class="token keyword">number</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">function</span> drawPoint <span class="token punctuation">(</span>canvas<span class="token punctuation">:</span> HTMLCanvasElement<span class="token punctuation">,</span> point<span class="token punctuation">:</span> Point<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> context<span class="token punctuation">:</span> CanvasRenderingContext2D <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">"2d"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        context<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">"#f13cab"</span><span class="token punctuation">;</span>
+        context<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span>point<span class="token punctuation">.</span>X<span class="token punctuation">,</span> point<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">var</span> test <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// مثال على إستخدامات صحيحة</span>
+    <span class="token function">drawPoint</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> <span class="token punctuation">{</span>X<span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">,</span> Y<span class="token punctuation">:</span> <span class="token number">13</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// إستخدامات غير صحيحة</span>
+    <span class="token function">drawPoint</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">31</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// خطأ</span>
+    <span class="token function">drawPoint</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">,</span> <span class="token number">31</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// خطأ لا يُمكن إدخال عنصر div</span>
+    <span class="token function">drawPoint</span><span class="token punctuation">(</span>test<span class="token punctuation">,</span> <span class="token punctuation">{</span>X<span class="token punctuation">:</span> <span class="token number">31</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// خطأ</span>
+</code></pre>
+<p>لعمل شيء مثل السابق بلغة JavaScript سنكتب بعض الأسطر الإضافية إلى الشيفرة للتأكد من إدخال جميع العناصر المطلوبة إلى الدَّالّة  drawPoint، والتأكد من إدخال عنصر رسم canvas،…</p>
+<h5><a href="#مغالطات-الأنواع-المنطقية-في-JavaScript" class="anchor" name="مغالطات-الأنواع-المنطقية-في-JavaScript">
+  					مغالطات الأنواع المنطقية في JavaScript</a></h5><p>نظام الأنواع في JavaScript من نوع Weekly Type؛ لِذا ستجد الكثير من المغالطات المنطقية، لنأخذ مثالًا على ذلك سنعرف متغيران أحدهما رقم والآخر رقم بداخل سلسلة نصيِّة، بلغة JavaScript:</p>
+<pre><code class="language-javascript">    <span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">"14"</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> string</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> number</span>
+</code></pre>
+<p>حتى الآن كل شيء يبدواْ صحيحًا؛ سيكون من غير المنطقي القيام ببعض المعاملات الرياضية بين هذين المتغيرين، لكنه في لغة JavaScript أمر صحيح:</p>
+<pre><code class="language-javascript">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str <span class="token operator">*</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 28</span>
+</code></pre>
+<p>حسنًا، يتضح مما سبق أنَّه يمكن ضرب رقم في هيِّئة سلسلة نصيِّة مع رقم آخر، لكن ماذا عن باقي المعاملات:</p>
+<pre><code class="language-javascript">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str <span class="token operator">-</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 12</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str <span class="token operator">/</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 7</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str <span class="token operator">%</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 0</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str <span class="token operator">+</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 142</span>
+</code></pre>
+<p>ثم، </p>
+<pre><code class="language-javascript">    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">++</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// -> 15 </span>
+    <span class="token comment" spellcheck="true">// str رقم أم سلسلة رقميِّة :)!</span>
+</code></pre>
+<h4><a href="#نظام-الأنواع-اختياري" class="anchor" name="نظام-الأنواع-اختياري">
+  					نظام الأنواع اختياري</a></h4><p>في بعض الحالات لا يمكن معرفة ما هو النوع الصحيح الواجب استخدامه،  في حالة اِستخدم مكتبة من طرف ثالث مثلًا. وقد تكون لا تفضل الكتابة بنظام أنواع لكنك تريد مميزات TypeScript الأخرى، الأنواع في TypeScript هي اختيارية؛ فيمكن الإعلان عن متغير باِستخدام النوع any بحيث سيقبل أي نوع من البيانات:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> notTyped<span class="token punctuation">:</span> <span class="token keyword">any</span> <span class="token operator">=</span> <span class="token number">31</span><span class="token punctuation">;</span>
+    notTyped <span class="token operator">=</span> <span class="token string">'32'</span><span class="token punctuation">;</span>
+</code></pre>
+<p>بالإضافة إلى أنه يمكن الإعلان عن متغيِّر بدون نوع، وسيحدد المترجم النوع في مرحلة التفسير:</p>
+<pre><code class="language-javascript">    <span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">31</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// تمامًا كمثل var num: number = 31;</span>
+    num <span class="token operator">=</span> <span class="token string">'32'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// خطأ</span>
+</code></pre>
+<h3><a href="#مستقبل-JavaScript-الآن" class="anchor" name="مستقبل-JavaScript-الآن">
+  					مستقبل JavaScript الآن</a></h3><p>تحدثنا في أول المقال عن مواصفة ECMAScript، وعلمنا أنَّ أغلب محركات JavaScript -حتى وقت كتابة هذا المقال- تدعم أغلب خصائص الإصدار الخامس من هذه المواصفة(ES5)، مع بعض من خصائص الإصدار السادس ES6. قدمت مواصفة ECMAScript في الإصدار السادس العديد من المميزات منها من حل بعض المشاكل كالدِّوال السهمية، ومنها من قدم مميزات تفتقر JavaScript إليها كالأصناف،  لكن حتى الآن لا يمكن كتابة شيفرات JavaScript تعتمد على ES6 بشكل كامل؛ لإنها لن تعمل على الكثير من محركات JavaScript.<br>وتحدثنا أنَّ لغة TypeScript تتبع مواصفة ES6 مع بعض الخصائص الخاصة؛ مع هذا فإنها توِّفر جعل شيفرة JavaScript الناتجة تتبع الإصدار ES3, ES5 أو ES6، إن كان يُمكن ذلك؛ فيوجد بعض الخصائص الَّتي لا يُمكن ترجمتها إلى جميع الإصدارات، كمثل وظائف الوصول(accessors method) لا يُمكن ترجمتها إلى ES3، ولا تقتصر TypeScript على دعم مواصفة ES6 والأنواع فقط، فتدعم بعض الخصائص الأخرى منها ما هو خاص باللّغة كمثل الأنواع المعددة(Enumerated Type) كلغة c و c#: </p>
+<pre><code class="language-typescript">    <span class="token keyword">enum</span> COLORS <span class="token punctuation">{</span> RED <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> BLUE <span class="token comment" spellcheck="true">/** 2 */</span><span class="token punctuation">}</span>
+</code></pre>
+<p>ومنها ما سيأتي مستقبلًا في إصدارات قادمة من ECMAScript كمثل معاملة الرفع(**)، وزخرفة(decorator) الوظائف في ES7، مثالًا على كليهما:</p>
+<pre><code class="language-typescript">    <span class="token comment" spellcheck="true">// دالّة ستحول عنصر الوصول num في الصنف C لكي يرجع مربع الرَّقم.</span>
+    <span class="token keyword">function</span> <span class="token function">Cube</span><span class="token punctuation">(</span>target<span class="token punctuation">:</span> C<span class="token punctuation">,</span> propertyKey<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span> descriptor<span class="token punctuation">:</span> PropertyDescriptor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> getter <span class="token operator">=</span> descriptor<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// حفظ وظيفة الوصول الَّتي تجلب الرَّقم</span>
+        descriptor<span class="token punctuation">.</span><span class="token keyword">get</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// التعديل عليها بحيث ترجه مربعه بدلًا منه</span>
+            <span class="token keyword">return</span> getter<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">C</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// صنف</span>
+        @Cube <span class="token comment" spellcheck="true">// زخرفة الوظيفة</span>
+        <span class="token keyword">get</span> <span class="token function">num</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword">number</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_number
+        <span class="token punctuation">}</span>
+        <span class="token keyword">set</span> num <span class="token punctuation">(</span>num<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>_number <span class="token operator">=</span> num
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">constructor</span> <span class="token punctuation">(</span><span class="token keyword">public</span> _number<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// تجربة</span>
+    <span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">C</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>num<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// -> 9</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>num <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> c<span class="token punctuation">.</span>num<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// -> 4</span>
+</code></pre>
+<h3><a href="#صياغة-React" class="anchor" name="صياغة-React">
+  					صياغة React</a></h3><p>تدعم TypeScript بشكل افتراضي صياغة React الخاصة بصنع واجهة المستخدم للويب، وتدعم أيضًا إمكانية ترجمة الشيفرة إلى شيفرات JavaScript عادية قابلة للتنفيذ، أو صياغة JSX تحتاج إلى منفذ:</p>
+<pre><code class="language-typescript">    <span class="token keyword">import</span> <span class="token operator">*</span> as React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">UserWidget</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span> profile<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> state<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        render <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span>
+                <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"userProfile"</span><span class="token operator">></span>
+                    <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>profile<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">></span>
+                    <span class="token operator">&lt;</span>p<span class="token operator">></span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+            <span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2><a href="#إعداد-بيئة-TypeScript" class="anchor" name="إعداد-بيئة-TypeScript">
+  					إعداد بيئة TypeScript</a></h2><p>سنثبت أولًا مجمِّع TypeScript، وهو يتوفر للتثبيت بداخل بيئة Visual Studio، أو من خلال مدير حزم Node.JS أو كما يُسمى اختصارًا NPM، سنتحدث عن تثبيت المجمِّع  من خلال NPM فقط، لأنه متعدد المنّصات ليس لمستخدمي نظام ويندوز فقط ولأني لا أحبُّ Visual Stud$$ :)، لِنهمُّ بتثبيت Node.JS،</p>
+<h3><a href="#تثبيت-Node.JS" class="anchor" name="تثبيت-Node.JS">
+  					تثبيت Node.JS</a></h3><p>لتثبيت Node.JS استعمل <a href="https://nodejs.org/en/#download">معالج التثبيت الرسمي</a> في حال ما كنت تَستخدم نظام التشغيل Windows أو Mac OS، أما في حال عملك على نظام لينكس فقم بتثبيتها من خلال <a href="https://nodejs.org/en/download/package-manager/">مدير الحزم في نظامك</a>.</p>
+<h3><a href="#تنصيب-أدوات-TypeScript" class="anchor" name="تنصيب-أدوات-TypeScript">
+  					تنصيب أدوات TypeScript</a></h3><p>عبر NPM ثبِّت الحزمة TypeScript -بشكل عام، نَفِّذ هذا الأمر:</p>
+<pre><code class="language-bash">    <span class="token function">npm</span> <span class="token function">install</span> typescript -g
+</code></pre>
+<p>الحزمة TypeScript تحتوى على هتين الأداتين: </p>
+<ol>
+<li>مُجمِّع TypeScript(tsc).</li>
+<li>مدير حزم TypeScript(tsd)، مُنصب ملفّات الإعلان للحزم، إن تتذكر أول المقال، الملفّات المسؤولة عن الإعلان عن شيفرات JavaScript، لتستخدم بداخل TypeScript بشكل صحيح، سنتحدث عن الأمر مرة أخرى :) في موضوع لاحق بشكل أوسع -إن شاء الله.<br>للتأكد من تنصيب TypeScript بشكل صحيح نَفِّذ هذا الأمر: </li>
+</ol>
+<pre><code class="language-bash">    tsc -v
+</code></pre>
+<p>يجب أن يُخَرِّج إصدار TypeScript المُنصَّب، حتى وقت كتابة هذا المقال كان الإصدار هو 1.7.5؛ مع ذلك سنشرح  في دروس هذه السلسلة خصائص اللغة حتى الإصدار 2.1.0 سنشير إلى إصدار TypeScript مع كل خاصية -بإذن الله، يمكنك الحصول على آخر إصدار متوَّفر للتجربة، -ليس للإنتاج قد تحدث مشاكل غير متوقعة من استخدامه، عبْر:</p>
+<pre><code class="language-bash">    <span class="token function">npm</span> <span class="token function">install</span> typescript@next
+</code></pre>
+<h2><a href="#تجميع-شيفرة-TypeScript" class="anchor" name="تجميع-شيفرة-TypeScript">
+  					تجميع شيفرة TypeScript</a></h2><p>كتجربة على اِستخدام مجمّع TypeScript، وتنفيذًا لرغبتي في كتابة شرح أهلًا بالعالم:)، من خلال محررك المُفضل -سيكون أفضل لو تستخدم مُحرِّر يدعم TypeScript؛ لكي يساعدك على حل الإخطاء ومساعدتك بالكتابة، محرّر مثل visual studio code(مجاني عابر للمنصات من ميكروسوفت، يدعم العربية) أو atom مع تنصيب إضافة TypeScript. اِفتح ملف باسم hello.ts وضع به:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> hello<span class="token punctuation">:</span> <span class="token keyword">string</span> <span class="token operator">=</span> <span class="token string">"Hello, World."</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>من ثم اِتجه بسطر الأوامر إلى المجلد الّذي حفظتَ به الملفّ، ونفِّذ:</p>
+<pre><code class="language-bash">    tsc hello.ts
+</code></pre>
+<p>سينتج ملفّ JavaScript قابل للتنفيذ باسم hello.js؛ فور الانتهاء من العملية السابقة، يمكننا تنفيذ هذا الملفّ باستخدام Node.js، كالتالي:</p>
+<pre><code class="language-bash">    node hello.js
+</code></pre>
+<p>ملاحظات </p>
+<ol>
+<li>إن أردتَ تحديد اسمًا لملفّ JavaScript الناتج اِستخدم الإعداد -out؛ بحيث يكون عملية سطر الأوامر كالتالي <code>tsc hello.ts - out helloWorld.js</code>.</li>
+<li>إن أردتَ تحديد مواصفة ECMAScript لملفّ JavaScript الناتج استعمل الإعداد -target، بشكل اِفتراضي تكون ES3، كما تحدثنا لا يمكن ترجمة جميع الخصائص إليها لذا ستحتاج إلى استخدام إصدارًا أعلى كمثل ES5. كلما زاد الإصدار؛ كلما قل حجم الشيفرة الناتجة.<br>باقي <a href="https://github.com/Microsoft/TypeScript/wiki/Compiler-Options">إعدادات المجمِّع</a>.</li>
+</ol>
+<h2><a href="#ملفَّات-الإعداد-tsconfig.json" class="anchor" name="ملفَّات-الإعداد-tsconfig.json">
+  					ملفَّات الإعداد tsconfig.json</a></h2><h3><a href="#ما-هي-ملفات-الإعداد-ولماذا-نحتاج-إليها؟" class="anchor" name="ما-هي-ملفات-الإعداد-ولماذا-نحتاج-إليها؟">
+  					ما هي ملفات الإعداد ولماذا نحتاج إليها؟</a></h3><p>يحتوي ملفّ الإعداد على قائمة بملفات TypeScript التي ستترجم، وإعدادات مجمِّع TypeScript في صياغة شبيهة بJSON. الحاجة إلى ملفّ الإعداد مع كل مشروع TypeScript ليست إجبارية، إلا أنك سيجب عليك -بدون استخدام ملف الإعداد- كتابة قائمة الملفّات الخاصة بمشروعك، بالإضافة إلى إعدادات المجمِّع إن وجدت مع كل مرة ستبني فيها المشروع، وعند محاولة بناء المشروع من قبل مطوِّر آخر عليه أن يخمن إعدادات المجمِّع الّتي اِستخدمت والملفات الَّتي ستترجم!.<br>يتكون ملفِّ الإعداد من ثلاث خواص:</p>
+<ol>
+<li>إعدادات المجمِّع(compilerOptions): مجموعة من إعدادات مجمِّع TypeScript، الَّتي تحدثنا عنها قبلًا.</li>
+<li>ملفَّات المشروع(files): قائمة بملفات المشروع، يجب كتابة الملفّات جميعها بشكل متتالي، لا يُنصح به في حال المشاريع الكبير؛ لأنك ستحتاج إلى كتابة قائمة بجميع ملفات المشروع.</li>
+<li>مجلدات المشروع، عبر الخاصية exclude: تستخدم لاستدعاء جميع الملفّات ذات الصيغة ts أو tsx(ملفّات الواجهة الخاصة بreact)، بداخل مجلد ما، وهي بديلة عن files.<br>ويوجد خاصية أخرى غير مهمِّة بالمرة compileOnSave؛ فائدتها تتلخص في جعل المحرِّر البرمجي -إن كان يدعم ذلك، يجمِّع الشيفرة فور الحفظ.<br>كمثال سنكتب ملف مشروع لتجميع ملفّات TypeScript بداخل المجلد a، وإنتاج أخرى بداخل المجلد b، مع إصدار المواصفة ES5، سيكون ملف tsconfig.json كالتالي:</li>
+</ol>
+<pre><code class="language-json">    <span class="token punctuation">{</span>
+        <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"target"</span><span class="token operator">:</span> <span class="token string">"ES5"</span><span class="token punctuation">,</span>
+            <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"b"</span><span class="token punctuation">,</span>
+             <span class="token property">"sourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"exclude"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"./a"</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>يمكن تجمِّيع المشروع السابق عبر اِستدعاء المجمِّع في مجلد المشروع بدون أي إعدادات.<br>بعد هذا الدَّرس من المفترض أن يكون لديك علم بماهية لغة TypeScript واختلافها عن JavaScript، وطريقة إعداد مشروع بلغة TypeScript. في دروس قادمة سنبدأ بشرح خواص اللَّغة والتجريب العملي -بإذن الله-.</p>
+<h2><a href="#مصادر" class="anchor" name="مصادر">
+  					مصادر</a></h2><p><a href="http://web.archive.org/web/19981203070212/http://cgi.netscape.com/newsref/pr/newsrelease289.html">ECMAScript netscape.com</a><br><a href="http://wiki.ecmascript.org/doku.php">ecmascript wiki</a><br><a href="https://blogs.msdn.microsoft.com/typescript/2015/03/05/angular-2-built-on-typescript/">Angular 2: Built on TypeScript msdn</a><br><a href="https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html">why TypeScript</a>.</p>
+
+	</div>
+</article>
+
+				
+				<div id="disqus_thread"></div>
+				<script>
+				/**
+				* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+				* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+				*/
+				/*
+				var disqus_config = function () {
+				this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+				};
+				*/
+				(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+
+				s.src = '//youssifsayedio.disqus.com/embed.js';
+
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+				})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			</main>
+		</div>
+		<footer class="footer blog-main">
+	<p>© يوسف سيد المحتوى في المدونة مرخص تحت <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> مالم يظهر عكس ذلك، حقوق الآخرين محفوظة لهم.</p>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-42951392-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+</footer>
+		<script id="dsq-count-scr" src="//youssifsayedio.disqus.com/count.js" async></script>
+	</body>
+</html>

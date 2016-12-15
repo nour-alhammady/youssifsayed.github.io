@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Youssif Sayed, sayedgyussif@gmail.com">
+<meta name="language" content="Arabic"> 
+<meta name='subject' content='مدونة شخصية ذات ميول برمجيِّة.'>
+<meta name='blogcatalog'>
+<link rel="index" title="مدونة يوسف سيد" href="http://youssif.me/">
+<link rel="stylesheet" type="text/css" href="http://youssif.me/resource/css/theme.css">
+<link rel='author' href='http://youssif.me/readme.html' type='text/plain'>
+<link rel="alternate" type="application/rss+xml" title="تغذية المدوّنة" href="http://youssif.me/rss.xml"/>
+
+		<title>سلسلة شرح TypeScript: المقال الثان بعض الأنواع الأساسية، والمتغيرات والثوابت في ES6 - مدونة يوسف سيد</title>
+		<meta name="description" content="في [الدّرس السابق](https://goo.gl/O2lwSk) تحدثنا عن TypeScript وبعض الاختلافات بينها وبيْن JavaScript والقليل عن مواصفة ES.">
+	</head>
+	<body>
+		<div class="blog-main">
+			<header><span class="logo">
+	<div>
+		<h1 class="blog-name"><a href="http://youssif.me/" target="_self">مدونة يوسف سيد</a></h1>
+		<p class="blog-description"><a href="http://youssif.me/" target="_self">مدونة شخصية ذات ميول برمجيِّة.</a></p>
+	</div>
+</span>
+<nav class="blog-nav">
+	<ul class="blog-menu">
+		
+			<li class="blog-list actived">
+				<a href="http://youssif.me/">المدونة<a/>
+			</li>
+		
+			<li class="blog-list">
+				<a href="http://youssif.me/connectme.html">تواصل معي<a/>
+			</li>
+		
+			<li class="blog-list">
+				<a href="http://youssif.me/readme.html">من أنا<a/>
+			</li>
+		
+	</ul>
+	<a class="twitter" href="https://twitter.com/echoYOussif"></a>
+</nav></header>
+			<main>
+				<article>
+	<h2 class="post-header">
+		<a class="post-title" href="" target="__self">سلسلة شرح TypeScript: المقال الثان بعض الأنواع الأساسية، والمتغيرات والثوابت في ES6</a>
+		<span class="tags">
+			
+				<a class="tag" href="http://youssif.me/tag/typescript">typescript</a>
+			
+				<a class="tag" href="http://youssif.me/tag/javascript">javascript</a>
+			
+				<a class="tag" href="http://youssif.me/tag/es6">es6</a>
+			
+				<a class="tag" href="http://youssif.me/tag/types">types</a>
+			
+		</span>
+	</h2>
+	
+		<img class="post-img" alt="سلسلة شرح TypeScript: المقال الثان بعض الأنواع الأساسية، والمتغيرات والثوابت في ES6" title="سلسلة شرح TypeScript: المقال الثان بعض الأنواع الأساسية، والمتغيرات والثوابت في ES6" src="/resource/post-img/typescript.png">
+	
+	<div class="post-content">
+		<p class="post-date"><i>كتب في 6 شعبان 1437هـ الموافق 14 مايو لسنة 2016م.</i></p>
+		<p>في <a href="https://goo.gl/O2lwSk">الدّرس السابق</a> تحدثنا عن TypeScript وبعض الاختلافات بينها وبيْن JavaScript والقليل عن مواصفة ES. في هذا الدّرس سنتحدث عمليًّا عن الأنواع في TypeScript، والمتغيرات والثوابت ومجالهما في ES6؛ أي المقال سيكون مفيدًا لمبرمجي JavaScript عدًا بعض الجزء الأول الذي يتحدث عن الأنواع.</p>
+<h2><a href="#الأنواع-في-TypeScript" class="anchor" name="الأنواع-في-TypeScript">
+  					الأنواع في TypeScript</a></h2><h3><a href="#ما-هي-الأنواع-ببساطة" class="anchor" name="ما-هي-الأنواع-ببساطة">
+  					ما هي الأنواع ببساطة</a></h3><p>وبدون أي مصطلحات معقدة. في الطبيعة يوجد مواد سائلة، غازية، وصلبة، عندنا معشر المبرمجين يعادلها الأرقام والسلاسل النصية(string)، والمصفوفات(arrays) …، تعمل الأنواع على تنظيم عمل الوحدات وتوجيه عمل الخوارزميات …؛ البقرة تأكل الخضرة لتخرج لبنًا، التابع ToString() يأكل الأرقام ليخرج سلاسل نصية :)<br>أبسط الأنواع الأساسية في TypeScript:</p>
+<h3><a href="#الأنواع-المنطقية(boolean)" class="anchor" name="الأنواع-المنطقية(boolean)">
+  					الأنواع المنطقية(boolean)</a></h3><p>أبسط الأنواع وأهمها، هذا النوع من البيانات أما أن يكون صوابًا(true) أو خطأً(false) -أيضًا يُسميا صحيحًا/فاسدًا، إثباتًا/نفيًّا، موجبًا/سالبًا، 0/1 على حسب السياق-، يُعَدُّ هذا نوعًا أساسيًّا في أغلب لغات البرمجة وبدونه ستنفذ الخوارزميات في مسار وأحد; أي لن توجد العبارات الشرطية. مثال تعريف متغيرين منطقيين أحدهما صوابًا والآخر خطأً:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> Ok<span class="token punctuation">:</span> <span class="token keyword">boolean</span> <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> No<span class="token punctuation">:</span> <span class="token keyword">boolean</span> <span class="token operator">=</span> <span class="token keyword">false</span><span class="token punctuation">;</span>
+</code></pre>
+<h3><a href="#الأعداد(numbers)" class="anchor" name="الأعداد(numbers)">
+  					الأعداد(numbers)</a></h3><p>تدعم JavaScript ES6، TypeScript كلًا من نظام العد العشري، الثنائي، والستة عشري والثماني:</p>
+<pre><code class="language-typescript"><span class="token comment" spellcheck="true">// نظام العد العشري</span>
+<span class="token keyword">var</span> TeenDecimal<span class="token punctuation">:</span> <span class="token keyword">number</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// النظام الافتراضي لا تحتاج كتابة شيء لاستخدامه؛ فقط رقم.</span>
+
+<span class="token comment" spellcheck="true">// نظام العد الثنائي</span>
+<span class="token keyword">var</span> TeenBinary<span class="token punctuation">:</span> <span class="token keyword">number</span>  <span class="token operator">=</span> <span class="token number">0b1010</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ES6, استخدم البادئة 0b لتعريف عدد ثنائي باستخدام البت.</span>
+
+<span class="token comment" spellcheck="true">// نظام العد الثماني</span>
+<span class="token keyword">var</span> TeenOctalES6<span class="token punctuation">:</span> <span class="token keyword">number</span> <span class="token operator">=</span> <span class="token number">0o12</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// استخدم البادئة o12 لمواصفةES6 وينصح بها في حالة TypeScript؛ لكي تترجم في الشيفرة إلى عشري.</span>
+<span class="token comment" spellcheck="true">// var TeenOctal: number = 012; في حالة ES3 فقط، ولا ينصح بها؛ يخرج مجمع TypeScript خطأً إن استخدمتها ولم يكن إصدار مواصفة ES الهدف 3.  </span>
+
+<span class="token comment" spellcheck="true">// نظام العد الست عشري</span>
+<span class="token keyword">var</span> TeenHex<span class="token punctuation">:</span> <span class="token keyword">number</span> <span class="token operator">=</span> <span class="token number">0xa</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// استخدم البادئة "0x" قبل العدد.</span>
+</code></pre>
+<p>لا يوجد أي اختلاف بيْن عدد معرف بنظام ونظام آخر فيمكن مثلًا الجمع بين عددًا عُرِفَ بالثنائي وآخر بالعشري.<br>ملاحظة: تدعم JavaScript, TypeScript الكتابة العلمية للأرقام بحيث يكتب العدد وأس العدد عشرة الذي سيضرب به، بين الحرف e، مثلًا الرقم مليون سيكتب هكذا:</p>
+<pre><code>var M: number = 1e6;
+</code></pre><h3><a href="#السلاسل-النصية(string)" class="anchor" name="السلاسل-النصية(string)">
+  					السلاسل النصية(string)</a></h3><p>السلاسل النصية في JavaScript عبارة عن سلسلة من أحرف اليُونِكُود(Unicode) -UTF-16 على الأرجح- أي أنها لا تعتمد على البايت.</p>
+<h4><a href="#البت-والبايت-والحرف!" class="anchor" name="البت-والبايت-والحرف!">
+  					البت والبايت والحرف!</a></h4><p>نعلم جميعًا أنَّ الحاسوب يحفظ البيانات على هيئة مجموعة من الأرقام 0 أو 1 -تسمى البت(Bit)، ولدينا نوعًا آخر من الوحدات وهو البايت(Byte)، في أغلب الأنظمة -إن لم يكن كلها- يحوي ثمانية بت، أي أنَّ البايت الواحد يبدأ من 00000000 إلى 11111111 بالنظام الثنائي -من 0 إلى 255 بالعشري، إذًا لدينا 256 فرصة لحفظ الأحرف، هذا يفسر أنَّ الكثير من التراميز -التراميز التي تعتمد على بايت وأحد لكل حرف، لا يمكن أن يحفظ بها إلا 256 من الأحرف، كمثال ترميز <a href="https://ar.wikipedia.org/wiki/ويندوز-1256">windows-1256</a>  أول 7 بت -من 0 إلى 127 بالعشري- تحفظ الرموز الأساسية والحروف اللاتينية(<a href="https://ar.wikipedia.org/wiki/%D8%A3%D8%B3%D9%83%D9%8A">الأسكي</a>) ومن 128 إلى 255 حروفًا ورموز عربية واللغات الشبيهة الأردو، الفارسية …<br>إذًا لدينا مشكلة كيف سنحفظ أكثر من لغة في ملف وأحد، لا يكون ذلك بالاعتماد على البايت، بل باستخدام البت؛ لذلك سنتعرف على مجموعة جديد من التراميز تسمى Unicode، الصفحة التي بين يدك الآن تعتمد على إحداها <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> -إن لم أغيره لاحقًا :)، الحرف الواحد يحوي بين واحد إلى أربعة بايت -أو ستة بايت في الUTF-8 المعدل؛ لذا في لغات برمجيّة أخرى تعتمد على البايت في السلاسل النصية كلغة PHP يكون طول سلسلة نصية مكونة من حرف وأحد عربي بترميز UTF-8 إثنين، بينما في JavaScript وبالطبع TypeScript طوله وأحد.<br>مثال على تعريف نص:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> str<span class="token punctuation">:</span> <span class="token keyword">string</span> <span class="token operator">=</span> “نص عربي"<span class="token punctuation">;</span>
+</code></pre>
+<p>ملاحظة: يمكن تعريف النص بين علامة الاقتباس المنفردة &#39; والمزدوجة &quot; ولا يوجد فرق بينهما، وفي مواصفة ES6 أضيف دعم علامة الاقتباس ` تقدم ميزة جديدة(القوالب)، بحيث يمكن وضع متغيرات بالنص عبر كتابها في أقواس بعد علامة الدولار ${} مثال:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> count<span class="token punctuation">:</span> <span class="token keyword">number</span> <span class="token operator">=</span> <span class="token number">23</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> message<span class="token punctuation">:</span> <span class="token keyword">string</span> <span class="token operator">=</span> <span class="token template-string"><span class="token string">`count is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>count<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// count is 23</span>
+</code></pre>
+<p>في مواصفة ES5 وما قبلها كنا سنستخدم معامل الجمع وهذا كابوس حقًا!. لولا ضيق المقام لكنت تحدثت عن محرف الخلوص(هكذا ترجمت Escape character)، وبعض معاملات النصوص لكني قررت كتابتها في الموضوع القادم بإذن الله.</p>
+<h3><a href="#النوع-Any" class="anchor" name="النوع-Any">
+  					النوع Any</a></h3><p>لا يمكن دائمًا معرفة النوع الذي سيحفظ في المتغير، أو قد تريد حفظ أكثر من نوع على متغير واحد لذا TypeScript تقدم النوع any، جرب ترجمة الشيفرة التالية مع تغيير any إلى string -سيظهر خطأ:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> notTyped<span class="token punctuation">:</span> <span class="token keyword">any</span> <span class="token operator">=</span> “<span class="token keyword">string</span>”<span class="token punctuation">;</span>
+    notTyped <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+</code></pre>
+<h3><a href="#المصفوفات(Arrays)" class="anchor" name="المصفوفات(Arrays)">
+  					المصفوفات(Arrays)</a></h3><p>من أحد الطرق المهمة لحفظ البيانات المصفوفة، وتتكون من سلسلة من البيانات المرتبة بشكل متتالي، ستجد قائمة في أعلى المدونة هذه القائمة قبل أن تحول إلى شيفرة HTML كانت عبارة عن سلسلة من الروابط -مصفوفة. وأبسط أشكال المصفوفة مصفوفة الصف؛ تتكون من صف وأحد من البيانات أي أن موقع العناصر من 0 إلى حجم المصفوفة بشكل مسطح، المصفوفات في TypeScript يجب أن تكون محددة النوع مصفوفة منطقية، رقمية، وتضع عناصر المصفوفة بداخل القوس []، مثال على مصفوفة سلاسل نصية:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> strArr<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"AB"</span><span class="token punctuation">,</span> <span class="token string">"CD"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p>إذًا يمكن الوصول إلى العنصر الثاني من الموقع 1 -لاحظ العد يبدأ من الصفر:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> str <span class="token operator">=</span> strArr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p>ملاحظات:</p>
+<ol>
+<li>لم نكتب نوع المُتغير بعد اسمه في التعريف؛ لأنه سيحدد تلقائيًّا من قبل المفسر قبل التجميع، كذا جميع الأمثلة السابقة كان من أجل التعلم والأمثلة فقط.</li>
+<li>في حالة ما كانت المصفوفة ستحوي على أنواع مختلف استخدم النوع any سيكون نوع المصفوفة هكذا any[].<br>ويمكن أيضًا أن تكون مصفوفة الصف محددة الأعمدة عبر كتابة أنواع الأعمدة في الصف بين القوسين []، مثال على مصفوفة عمود تحوي كل الأنواع التي تعرفناها:</li>
+</ol>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> typesArray<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token keyword">boolean</span><span class="token punctuation">,</span> <span class="token keyword">number</span><span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token string">"abc"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> bool <span class="token operator">=</span> typesArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> num <span class="token operator">=</span> typesArray<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> str <span class="token operator">=</span> typesArray<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p>بإذن الله في درس لاحق سنتحدث عن أنواع أخرى من المصفوفات وبعض العمليات عليها.</p>
+<h3><a href="#الأنواع-المتعددة(Enumeration)" class="anchor" name="الأنواع-المتعددة(Enumeration)">
+  					الأنواع المتعددة(Enumeration)</a></h3><p>هذا النوع تنفرد به TypeScript عن JavaScript -حتى الآن، حتى نفهمه ببساطة تخيل أن لدينا علبة ألوان تحوي الأبيض، والأحمر، والأخضر؛ إذًا كل من هذه الأنواع نوعًا مُنفصلًا يجمعهم أنهم جميعهم ألوان، الإعلان عن هذه الألوان بإستخدم TypeScript(نبدأ بالمفتاح enum ثم النوع الأب، ونفتح قوسًا ونكتب بعض الأنواع ونفصل بينها باستخدام الفاصلة اللاتينية):</p>
+<pre><code class="language-typescript">    <span class="token keyword">enum</span> Colors <span class="token punctuation">{</span>
+        White<span class="token punctuation">,</span>
+        Red<span class="token punctuation">,</span>
+        Green
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// مثال على استخدام الأنواع</span>
+    <span class="token keyword">var</span> MyColor<span class="token punctuation">:</span> Colors <span class="token operator">=</span> Colors<span class="token punctuation">.</span>White<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 0</span>
+    MyColor <span class="token operator">=</span> Colors<span class="token punctuation">.</span>Green<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1</span>
+</code></pre>
+<p>ملاحظات:</p>
+<ol>
+<li>سنتعرف فيما بعد على البرمجة الكائنيّة إلى ذلك الوقت، فإن الوصول إلى أحد التوابع لكائن ما يكون عبر النقطة(.) كما وصلنا إلى أبناء Colors اللذان هما White, Green.</li>
+<li>افتراضيًّا في الأنواع المُعددة يُحدد الأنواع (الأبناء) على حسب قيمة السابق + 1، والأول يُحدد صفرًا، White حدد إلى 0، Red إلى 1 …، مثلًا يُمكننا تحديد قيمة الأنواع بعض الأنواع هكذا:</li>
+</ol>
+<pre><code class="language-typescript">    <span class="token keyword">enum</span> Colors <span class="token punctuation">{</span>
+        White <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">,</span>
+        Red<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// سيحدد إلى White+1 = 43</span>
+        Green <span class="token operator">=</span> <span class="token number">53</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>على الجانب: النوع الأب هو أيضًا مصفوفة لأسماء الأنواع التابعة:</p>
+<pre><code class="language-typescript">    <span class="token keyword">enum</span> Colors <span class="token punctuation">{</span>
+        White <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">,</span>
+        Red<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// سيحدد إلى White+1 = 43</span>
+        Green <span class="token operator">=</span> <span class="token number">53</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">var</span> name1 <span class="token operator">=</span> Colors<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// White</span>
+    <span class="token keyword">var</span> name3 <span class="token operator">=</span> Colors<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// Green</span>
+</code></pre>
+<h3><a href="#الأنواع-الخاصة" class="anchor" name="الأنواع-الخاصة">
+  					الأنواع الخاصة</a></h3><p>تقدم TypeScript ميزة الإعلان عن أنواع خاصة، من أحد فوائدها تنظيم الشيفرة فمثلًا إن كنا سنحفظ المستخدمين باستخدام مصفوفة، وكان هذا العمل سيتم بين عدّة وظائف فمن الأفضل الإعلان عن نوعًا خاصًا يحدد كيف سيحفظ المستخدم، (يُعلن النوع باستخدام المُفتاح type باستخدام الأنواع الأساسية)، مثال على حفظ اسم وعمر المستخدم في مصفوفة صفيّة:</p>
+<pre><code class="language-typescript">    <span class="token comment" spellcheck="true">// الاسم والسن للمستخدم في مصفوفة صفية</span>
+    type user <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">string</span><span class="token punctuation">,</span> <span class="token keyword">number</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+
+    <span class="token keyword">var</span> Ahmed<span class="token punctuation">:</span> user <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Ahmed"</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">]</span>
+</code></pre>
+<p>هكذا سنضمن تراسل بيانات المستخدمين بالشكل المطلوب بين الوظائف المختلفة، لنا عودة أخرى -بإذن الله- مع الأنواع الخاصة في درس لاحق سأعد له عن الأوجه(Interfaces). </p>
+<h2><a href="#المُتغيرات-في-TypeScript" class="anchor" name="المُتغيرات-في-TypeScript">
+  					المُتغيرات في TypeScript</a></h2><p>بعدما تعرفنا على بعض الأنواع الأساسية في TypeScript، سنتعرف على المتغيرات، ربما وضح لك عملها من الأمثلة البرمجيّة السابقة، يُمكننا توضيحها بمثال بسيط كم الساعة الآن -أثناء كتابتي لهذا الجزء كانت الثانية :)- حسنًا هل الساعة ثابتة مقدارًا؟ لا، لنفترض أنَّ الساعة محفوظة في المُتغير time يمكننا الوصول إلى هذا المُتغير والتعديل علي مقداره، إذًا المُتغير هو عنوان في الذاكرة يقبل القراءة والتعديل عليه. في TypeScript قيمة المُتغير مقيدة بنوعه؛ مثلًا إن كان النوع الذي تم تعريف المتغير إليه رقمًا فلا يمكن جعل قيمته سلسلة نصية بعكس JavaScript؛ ومع ذلك يمكن استخدام النوع any.</p>
+<h3><a href="#مجالان-للمتغيرات-وlet،-var" class="anchor" name="مجالان-للمتغيرات-وlet،-var">
+  					مجالان للمتغيرات وlet، var</a></h3><p>انطلاقًا من ES6 أُضيف مفتاحًا جديدًا لتعريف المُتغيرات let، الفرق بين var و let ليس جوهريًّا كل الفرق في المجال(scope)، مجال المُتغير هو الجزء أو المساحة التي يمكن الوصول إلى المُتغير منها؛ في المُفتاح var المُتغير مجاله عامًا في جميع حدود الوظيفة -أعرف أننا لم نتحدث عن الدوال والوظائف بعد آسف، بينما مجال المُتغير المُعرف بالمفتاح let يكون عمومي في التعبير(ببساطة بداخل القوسين {})، مثال إيضاحي -لا تقلق سنشرح كل هذا فيما بعد:</p>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> globalvar <span class="token operator">=</span> <span class="token string">"مُتغير عام"</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> globallet <span class="token operator">=</span> <span class="token string">"مُتغير عام أيضًا"</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// وظيفة، دالة</span>
+    <span class="token keyword">function</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> globalvar2 <span class="token operator">=</span> globalvar2<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// var يكون عام في كل الوظيفة</span>
+        <span class="token keyword">var</span> globallet2 <span class="token operator">=</span> globallet<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// كذلك let</span>
+
+        <span class="token comment" spellcheck="true">// عبارة شرطية لو 1 يساوي 1</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> var3 <span class="token operator">=</span> globalvar2<span class="token punctuation">;</span>
+            <span class="token keyword">let</span> let3 <span class="token operator">=</span> globallet2<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        globalvar2 <span class="token operator">=</span> var3<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// يُمكن الوصول إلى var3 الذي عرف بداخل العبارة الشرطية</span>
+
+        <span class="token comment" spellcheck="true">// ---- خطأ ----</span>
+        globallet2 <span class="token operator">=</span> let3<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// خطأ لا يمكن الوصول إلى المُتغير let3 لأنه عرف باستخدام المفتاح let بداخل عبارة شرطية</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// ---- خطأ --- </span>
+    globalvar <span class="token operator">=</span> globalvar2<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// لا يمكن الوصول إلى المُتغير globalvar2 لأنّ حدوده الوظيفة</span>
+</code></pre>
+<p>استبقنا الأحداث المجالات، الوظائف، التعبيرات … بدون أن نتحدث عن قواعد الإعلان عن مُتغير،</p>
+<h3><a href="#قواعد-الإعلان-عن-متغير:" class="anchor" name="قواعد-الإعلان-عن-متغير:">
+  					قواعد الإعلان عن متغير:</a></h3><p>قاعدة بنية(Syntax) الإعلان عن متغير في مواصفة ES:</p>
+<pre><code>let|var var1 [= value1] [, var2 [= value2]] [, ..., varN [= valueN]];
+</code></pre><p>ملاحظة: في TypeScript يوجد تعديل بسيط أنّ النوع يُمكن أن يلحق اسم المُتغير بعد  العلامة “:” (اختياري).<br>من هذا البنية يُمكننا استخلاص هذه القواعد:</p>
+<ol>
+<li>لا فرق في بنية الإعلان عن مُتغير باستخدام المفتاح var أو let:<br>كما ذكرنا سابقًا كل الفرق في المجال.</li>
+<li>يمكن الإعلان عن مُتغير بدون قيمته:<br>وفي TypeScript إن أُعلن عن مُتغير بدون نوع أو قيمة، فسيكون نوعه any، وقيمته undefined(غير مُحددة):</li>
+</ol>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> test<span class="token punctuation">;</span>
+    test <span class="token operator">=</span> <span class="token string">"string"</span><span class="token punctuation">;</span>
+    test <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+</code></pre>
+<p>بينما إن لم يحدد نوعه وحددت قيمته في بنية الإعلان، فسيحدد إلى نوعًا تلقائيًّا -نوع القيمة المُحددة أظن أني كتبت هذا في أعلى المقال:).</p>
+<ol>
+<li>يُمكن الإعلان عن أكثر من مُتغير باستخدام الفاصلة اللاتينية &quot;,&quot;<br>تعريف عدّة مُتغيرات مع إسناد كل مُتغير إلى نوع وقيمة مُختلفة:</li>
+</ol>
+<pre><code class="language-typescript">    <span class="token keyword">var</span> var1<span class="token punctuation">:</span> <span class="token keyword">string</span> <span class="token operator">=</span> <span class="token string">"abc"</span><span class="token punctuation">,</span>
+        var2<span class="token comment" spellcheck="true">/*: number لسنا بحاجة إلى كتابه سيّعين تلقائيًّا */</span> <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">,</span>
+        var3 <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">;</span>
+</code></pre>
+<h2><a href="#الثوابت" class="anchor" name="الثوابت">
+  					الثوابت</a></h2><p>إن وصلت إلى هذا الجزء فستكون بحمد الله استطعت استحمال -الذي لا استحمله شخصيًّا :)، انطلاقًا من ES6 أضيفت الثوابت وهي كالمتغيرات لكنها للقراءة فقط أي لا يمكن التعديل عليها ما إن تعرف، مثلًا في الطبيعة يوجد ثابت الجذب العالم في الفيزياء (G)، عدد أيام الأسبوع، عدد ساعات اليوم …، بماذا تفيد الثوابت؟ من السابق يتضح أنّ لا فرق عمليّا بين مُتغير وثابت؛ ففي النهاية ما يُمكن القيام به بثابت يُمكن القيام به بمتغير، إلا أنه من الممارسات الجيّدة الإعلان عن القيّم الثابتة باستخدام الثواب؛ لأنها ببساطة ثوابت؛ مثلًا لا تعرف قيمة PI(ثابت الدائرة) كمتغير، أو كانت تلك القيم لا يجب أن تتغير كتعريف أكبر عدد للمستخدمين يتحمله البرنامج كمُتغير سيكون خطأً، أيضًا لجعل الشيفرة أكثر قابلية للقرأة من مطورين آخرين.<br>تعريف الثوابت كالمُتغيرات، فقط الاختلاف في المفتاح؛ في الثوابت المفتاح هو(const)، مثال على تعريف بعض الثوابت:</p>
+<pre><code class="language-typescript">    <span class="token keyword">const</span> PI <span class="token operator">=</span> <span class="token number">22</span><span class="token operator">/</span><span class="token number">7</span><span class="token punctuation">,</span>
+          G <span class="token operator">=</span> <span class="token number">6.67408e-11</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> circlePerimeter <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> PI <span class="token operator">*</span> <span class="token number">23</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// خطأ</span>
+    PI <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+</code></pre>
+<p>أحييك لوصولك إلى آخر المقال بدون أن تغلق الصفحة :)، هكذا نكون انتهينا من درسنا لليوم، بإذن الله الدرس القادم سيكون عن العاملات. أتمنى أن ترشدني إلى أي خطأ في المقال، أي ملاحظات تجعلني أحسن من جودة مقالاتي شكرًا.</p>
+
+	</div>
+</article>
+
+				
+				<div id="disqus_thread"></div>
+				<script>
+				/**
+				* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+				* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+				*/
+				/*
+				var disqus_config = function () {
+				this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+				};
+				*/
+				(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+
+				s.src = '//youssifsayedio.disqus.com/embed.js';
+
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+				})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			</main>
+		</div>
+		<footer class="footer blog-main">
+	<p>© يوسف سيد المحتوى في المدونة مرخص تحت <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> مالم يظهر عكس ذلك، حقوق الآخرين محفوظة لهم.</p>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-42951392-2', 'auto');
+		ga('send', 'pageview');
+	</script>
+</footer>
+		<script id="dsq-count-scr" src="//youssifsayedio.disqus.com/count.js" async></script>
+	</body>
+</html>
