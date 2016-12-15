@@ -1,6 +1,6 @@
 <article>
 	<h2 class="post-header">
-		<a class="post-title" href="<% if (typeof postLink == "string") { %><%= postLink; %><% } %>"><%= postTitle %></a>
+		<a class="post-title" href="<% if (typeof postLink == "string") { %><%= postLink; %><% } %>" target="__self"><%= postTitle %></a>
 		<span class="tags">
 			<% for (var tag of postTags) { %>
 				<a class="tag" href="<%= blogurl %>tag/<%= tag %>"><%= tag %></a>
